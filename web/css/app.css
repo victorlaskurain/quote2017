@@ -1,0 +1,11 @@
+body {
+    padding-top: 50px;
+}
+
+#quote-list-page {
+    height: 90vh;
+}
+
+input[type=number] {
+    text-align: right;
+}

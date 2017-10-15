@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}app.quotes{% endtrans %}{% endblock %}
+
+{% block stylesheets %}
+<link type="text/css" rel="stylesheet" href="{{ asset('lib/jsgrid/jsgrid.min.css') }}" />
+<link type="text/css" rel="stylesheet" href="{{ asset('lib/jsgrid/jsgrid-theme.min.css') }}" />
+{% endblock %}
+
+{% block content %}
+<div id="quote-list-page">
+    <h2>{% trans %}app.quotes{% endtrans %}</h2>
+    <div id="quote-list"></div>
+    <p class="pull-right">
+        <button class="new-quote btn btn-default">{% trans %}app.create{% endtrans%}</button>
+    </p>
+</div>
+<div id="quote-edit-page">
+    <h2>{% trans %}app.quote{% endtrans %}</h2>
+    <form id="quote-edit-form">
+        <div class="row">
+            <div class="form-group col-sm-4">
+                <label for="quote_id" class="control-label">
+                    {% trans %}app.quote_number{% endtrans%}
+                </label>
+                <input readonly
+                       class="form-control"
+                       type="text"
+                       name="id"
+                       id="quote_id">
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="quote_customer_id" class="control-label">
+                    {% trans %}app.quote_customer{% endtrans%}
+                </label>
+                <select class="form-control"
+                        name="customer_id"
+                        id="quote_customer_id">
+                </select>
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="quote_date" class="control-label">
+                    {% trans %}app.quote_date{% endtrans%}
+                </label>
+                <input type="date"
+                       class="form-control"
+                       name="date"
+                       id="quote_date">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-12">
+                <label for="quote_description" class="control-label">
+                    {% trans %}app.quote_description{% endtrans%}
+                </label>
+                <input type="text"
+                       class="form-control"
+                       name="description"
+                       id="quote_description">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-8">
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="quote_shipping" class="control-label">
+                    {% trans %}app.quote_shipping{% endtrans%}
+                </label>
+                <input step="0.01"
+                       type="number"
+                       class="form-control"
+                       name="shipping"
+                       id="quote_shipping">
+            </div>
+        </div>
+        <br />
+        <p class="pull-right">
+            <button id="quote-edit-cancel" class="btn btn-default">{% trans %}app.quote_cancel{% endtrans%}</button>
+            <button id="quote-edit-save" class="btn btn-primary">{% trans %}app.quote_save{% endtrans%}</button>
+        </p>
+    </form>
+</div>
+{% endblock %}
+
+
+{% block javascripts %}
+<script src="{{ asset('js/quote.js') }}"></script>
+{% endblock %}

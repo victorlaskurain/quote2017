@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('lib/bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('lib/bootstrap/css/bootstrap-theme.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('lib/jquery-ui/jquery-ui.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        {% block stylesheets %}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body lang="{{ app.request.locale }}">
+        <nav id="main-menu" class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">{% trans %}app.quotes2017{% endtrans %}</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#"
+                               class="dropdown-toggle"
+                               data-toggle="dropdown"
+                               role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">{% trans %}app.quotes{% endtrans %}</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path("quoteList") }}">{% trans %}app.show{% endtrans %}</a></li>
+                                <li><a class="new-quote" href="#">{% trans %}app.create{% endtrans %}</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#"
+                               class="dropdown-toggle"
+                               data-toggle="dropdown"
+                               role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">{% trans %}app.customers{% endtrans %}</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path("customerList") }}">{% trans %}app.show{% endtrans %}</a></li>
+                                <li><a href="#">{% trans %}app.create{% endtrans %}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="content" class="container">
+            {% block content %}{% endblock %}
+        </div>
+        <script>
+var require = {
+    shim: {
+        "bootstrap": { "deps" :["jquery"] },
+        "jquery-ui": { "deps" :["jquery"] },
+        "jsgrid":    { "deps" :["jquery"] },
+        "jsgrid-es": { "deps" :["jsgrid"] }
+    },
+    baseUrl: "{{ asset('js') }}",
+    paths: {
+        "bootstrap": "{{ asset('lib/bootstrap/js/bootstrap.min') }}",
+        "jquery":    "{{ asset('lib/jquery') }}",
+        "jquery-ui": "{{ asset('lib/jquery-ui/jquery-ui.min') }}",
+        "jsgrid":    "{{ asset('lib/jsgrid/jsgrid') }}",
+        "jsgrid-es": "{{ asset('lib/jsgrid/i18n/jsgrid-es') }}",
+        "lib":       "{{ asset('lib') }}"
+    }
+};
+        </script>
+        <script src="{{ asset('lib/require.js') }}"></script>
+        <script>
+define("appStrings", function() {
+return {
+    "customer":          "{% trans %}app.customer{% endtrans %}",
+    "quote_description": "{% trans %}app.quote_description{% endtrans %}",
+    "quote_number":      "{% trans %}app.quote_number{% endtrans %}",
+    "shipping":          "{% trans %}app.shipping{% endtrans %}"
+}
+});
+define("currentlocale", function() {
+return "{{ app.request.locale }}";
+});
+        </script>
+        <script>
+require(["bootstrap"], function(){});
+        </script>
+        {% block javascripts %}
+        {% endblock %}
+    </body>
+</html>
