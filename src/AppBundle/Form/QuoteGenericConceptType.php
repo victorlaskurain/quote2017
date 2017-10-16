@@ -10,27 +10,13 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class QuoteType extends AbstractType
+class QuoteGenericConceptType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id')
-            ->add(
-                'date',
-                DateType::class,
-                array(
-                    'widget' => 'single_text',
-                    'format' => 'yyyy-MM-dd'
-                ))
             ->add('description')
-            ->add('shipping')
-            ->add('customer_id')
-            ->add('generic_concepts', CollectionType::class, array(
-                'entry_type' => QuoteGenericConceptType::class,
-                'allow_add' => true,
-                'allow_delete' => true
-            ));
+            ->add('amount');
     }
 
     public function configureOptions(OptionsResolver $resolver)

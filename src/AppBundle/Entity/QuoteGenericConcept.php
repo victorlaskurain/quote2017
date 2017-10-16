@@ -9,13 +9,14 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
-use Doctrine\ORM\Mapping\UniqueContraint;
+use Doctrine\ORM\Mapping\UniqueConstraint;
 
 
 /**
 * @Entity
+* @Table(uniqueConstraints={@UniqueConstraint(columns={"quote_id", "order"})})
 */
-class Quote
+class QuoteGenericConcept
 {
   /**
    * @Column(type="integer")
@@ -25,9 +26,9 @@ class Quote
   protected $id;
 
   /**
-   * @Column(type="date")
+   * @Column(type="integer")
    */
-  protected $date;
+  protected $order;
 
   /**
    * @Column()
@@ -35,13 +36,17 @@ class Quote
   protected $description;
 
   /**
-   * @Column(type="decimal", precision=10, scale=3)
+   * @Column(type="decimal",
+   *         precision=10,
+   *         scale=3,
+   *         nullable=false,
+   *         options={"default" = 0})
    */
-  protected $shipping;
+  protected $amount;
 
   /**
-   * @ManyToOne(targetEntity="Customer")
+   * @ManyToOne(targetEntity="Quote")
    * @JoinColumn(nullable=false)
    */
-  private $customer;
+  private $quote;
 }

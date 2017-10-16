@@ -34,9 +34,20 @@ INSERT INTO $table ($columns)
         return $this->conn->lastInsertId();
     }
 
+    public function addQuoteGenericConcept($concept)
+    {
+        return $this->addRecord('quote_generic_concept', $concept);
+    }
+
     public function addQuote($quote)
     {
         return $this->addRecord('quote', $quote);
+    }
+
+    public function deleteGenericConceptsByQuoteId($id)
+    {
+        $sql = 'DELETE FROM quote_generic_concept WHERE quote_id = ?';
+        $this->conn->executeUpdate($sql, array($id));
     }
 
     private static function filterToMySqlQuery($conn, $filter)
@@ -111,6 +122,16 @@ INSERT INTO $table ($columns)
             'id' => $id
         );
         return $conn->fetchAssoc($sql, $params);
+    }
+
+    public function getQuoteGenericConcepts($quoteId)
+    {
+        $sql = '
+SELECT *
+FROM quote_generic_concept
+WHERE quote_id = ?
+ORDER BY `order`';
+        return $this->conn->fetchAll($sql, array($quoteId));
     }
 
     public function getQuotesFilter($filter)

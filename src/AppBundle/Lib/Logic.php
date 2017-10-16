@@ -13,20 +13,52 @@ class Logic
         $this->db = $db;
     }
 
+    public function addQuoteGenericConcepts($id, $genericConcepts)
+    {
+        $this->db->transactional(function($em) use ($id, $genericConcepts) {
+            $db = $this->db;
+            foreach ($genericConcepts as $concept) {
+                $concept['quote_id'] = $id;
+                $db->addQuoteGenericConcept($concept);
+            }
+        });
+    }
+
     public function addUpdateQuote($quote)
     {
         $id = null;
         $this->db->transactional(function($em) use ($quote, &$id) {
-            $db = $this->db;
+            $db              = $this->db;
+            $genericConcepts = array();
+            if (isset($quote['generic_concepts'])) {
+                $genericConcepts = $quote['generic_concepts'];
+                unset($quote['generic_concepts']);
+            }
             if (isset($quote['id'])) {
                 $id = $quote['id'];
                 // ensure quote to update exists
                 $dbQuote = $db->getQuoteById($id);
                 $db->updateQuote($quote);
+                $db->deleteGenericConceptsByQuoteId($id);
             } else {
                 $id = $db->addQuote($quote);
             }
+            foreach ($genericConcepts as $i => &$gc) {
+                $gc['order'] = 10 * ($i + 1);
+            }
+            $this->addQuoteGenericConcepts($id, $genericConcepts);
         });
         return $id;
+    }
+
+    public function getQuoteById($id)
+    {
+        $quote = null;
+        $this->db->transactional(function($em) use (&$quote, $id) {
+            $db = $this->db;
+            $quote = $db->getQuoteById($id);
+            $quote['generic_concepts'] = $db->getQuoteGenericConcepts($id);
+        });
+        return $quote;
     }
 }

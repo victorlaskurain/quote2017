@@ -62,7 +62,7 @@ class QuotesController extends Controller
             }
             $id = $logic->addUpdateQuote($quote);
         }
-        return new JsonResponse($db->getQuoteById($id));
+        return new JsonResponse($logic->getQuoteById($id));
     }
 
     /**

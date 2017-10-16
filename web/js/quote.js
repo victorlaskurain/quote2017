@@ -3,12 +3,13 @@ require([
     "appStrings",
     "api",
     "locale",
+    "template",
     "jsgrid",
     "jsgrid-es",
     "bootstrap-combobox",
     "lib/jquery.serializejson"
 ],
-function($, strings, api, locale){
+function($, strings, api, locale, template){
 
 var quoteController = {
     loadData: function(filter) {
@@ -35,6 +36,27 @@ function init() {
     if (locale.locale != "en") {
         jsGrid.locale(locale.locale);
     }
+    $("#quote-list-page").hide();
+    $("#quote-edit-page").hide();
+    $("#add-generic").data("tr-id", -1);
+    $("#add-generic").click(function() {
+        var trId = $("#add-generic").data("tr-id");
+        $("#add-generic").data("tr-id", trId - 1);
+        template.render(
+            {
+                amount: 0,
+                id: trId
+            },
+            $("#generic-concept-tpl").html(),
+            $("#quote-generic-concept-footer"),
+            "before");
+        return false;
+    });
+    $(document).on("click", ".remove-generic", function() {
+        var trId = $(this).attr("data-tr-id");
+        $("#" + trId).remove();;
+        return false;
+    });
     $(".bootstrap-combobox").combobox();
     $("#quote-edit-cancel").click(function() {
         cancelQuoteEdit();
@@ -57,6 +79,9 @@ function init() {
         $("#quote_customer_id").combobox("refresh");
         loadQuoteGrid([{id: "", name: ""}].concat(customers.data));
         $("#quote-list-page").show();
+
+        // $("#quote-list-page").hide();
+        // $("#quote-edit-page").show();
     });
 }
 
@@ -166,6 +191,12 @@ function showQuote(quote) {
         for (key in quote) {
             $("#quote_" + key).val(quote[key]);
         }
+        $("tr.generic-concept").remove();
+        template.render(
+            quote.generic_concepts,
+            $("#generic-concept-tpl").html(),
+            $("#quote-generic-concept-footer"),
+            "before");
         $("#quote-list-page").hide();
         $("#quote-edit-page").show();
     });
@@ -173,6 +204,7 @@ function showQuote(quote) {
 
 function newQuote() {
     var quote = $('#quote-edit-form').serializeJSON(), key;
+    $("tr.generic-concept").remove();
     for (key in quote) {
         $("#quote_" + key).val(null);
     }
