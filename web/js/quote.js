@@ -5,6 +5,7 @@ require([
     "locale",
     "jsgrid",
     "jsgrid-es",
+    "bootstrap-combobox",
     "lib/jquery.serializejson"
 ],
 function($, strings, api, locale){
@@ -34,6 +35,7 @@ function init() {
     if (locale.locale != "en") {
         jsGrid.locale(locale.locale);
     }
+    $(".bootstrap-combobox").combobox();
     $("#quote-edit-cancel").click(function() {
         cancelQuoteEdit();
         return false;
@@ -52,6 +54,7 @@ function init() {
         }
         var customerOptions = customers.data.map(toOption).join("");
         $("#quote_customer_id").html(customerOptions);
+        $("#quote_customer_id").combobox("refresh");
         loadQuoteGrid([{id: "", name: ""}].concat(customers.data));
         $("#quote-list-page").show();
     });
@@ -109,6 +112,39 @@ function loadQuoteGrid(customers) {
             }
         ]
     });
+    // initialize combo box filters and add class to render jsGrid
+    // filters with bootstrap styles.
+    $(".jsgrid-filter-row select").combobox();
+    $(".jsgrid-filter-row input").addClass("form-control");
+    (function() {
+        // resize bootstrap-combobox at window resizing and at the
+        // same time keep options visible.
+        var resizeTimer,
+            beginResize = true;
+        $(window).on('resize', function(e) {
+            if (beginResize) {
+                $('.jsgrid-filter-row td>div.combobox-container').css(
+                    'position',
+                    'static');
+                beginResize = false;
+            }
+            window.clearTimeout(resizeTimer);
+            resizeTimer = window.setTimeout(function() {
+                // Run code here, resizing has "stopped"
+                beginResize = true;
+                $('.jsgrid-filter-row td>div.combobox-container')
+                    .map(function(i, combo) {
+                        var $combo = $(combo),
+                            pos    = $combo.position(),
+                            width  = $combo.width();
+                        $combo.css('position', 'absolute');
+                        $combo.css('top', pos.top + 'px');
+                        $combo.width(width);
+                        console.log("kaixo");
+                    });
+            }, 250);
+        });
+    }());
 };
 
 function saveQuote() {

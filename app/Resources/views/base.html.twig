@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="{{ asset('lib/bootstrap/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('lib/bootstrap/css/bootstrap-theme.min.css') }}">
         <link rel="stylesheet" href="{{ asset('lib/jquery-ui/jquery-ui.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('lib/bootstrap-combobox/bootstrap-combobox.css') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         {% block stylesheets %}
         {% endblock %}
@@ -60,6 +61,7 @@
 var require = {
     shim: {
         "bootstrap": { "deps" :["jquery"] },
+        "bootstrap-combobox": { "deps" :["jquery", "bootstrap"] },
         "jquery-ui": { "deps" :["jquery"] },
         "jsgrid":    { "deps" :["jquery"] },
         "jsgrid-es": { "deps" :["jsgrid"] }
@@ -67,6 +69,7 @@ var require = {
     baseUrl: "{{ asset('js') }}",
     paths: {
         "bootstrap": "{{ asset('lib/bootstrap/js/bootstrap.min') }}",
+        "bootstrap-combobox": "{{ asset('lib/bootstrap-combobox/bootstrap-combobox') }}",
         "jquery":    "{{ asset('lib/jquery') }}",
         "jquery-ui": "{{ asset('lib/jquery-ui/jquery-ui.min') }}",
         "jsgrid":    "{{ asset('lib/jsgrid/jsgrid') }}",

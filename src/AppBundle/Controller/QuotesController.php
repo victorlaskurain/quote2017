@@ -27,11 +27,6 @@ class QuotesController extends Controller
     {
         $db = $this->get('app.db');
         $data = $db->getQuotesFilter($request->query->all());
-        foreach ($data['data'] as &$row) {
-            $row['customer_id'] = (int)$row['customer_id'];
-            $row['id']          = (int)$row['id'];
-            $row['shipping']    = (float)$row['shipping'];
-        }
         return new JsonResponse($data);
     }
 

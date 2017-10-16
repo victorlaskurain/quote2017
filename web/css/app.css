@@ -3,9 +3,36 @@ body {
 }
 
 #quote-list-page {
-    height: 90vh;
+    height: 75vh;
 }
 
 input[type=number] {
     text-align: right;
+}
+
+
+/**
+ * Hack to show bootstrap-combobox as filter. Without this hack the
+ * options don't display correctly.
+ */
+.jsgrid-filter-row td>div.combobox-container {
+    xxposition: absolute;
+    xxtop: 3.1em;
+}
+.jsgrid-filter-row td>div.combobox-container input {
+    text-align: left;
+}
+
+
+/**
+ * Hide number input spinners.
+ */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
 }
