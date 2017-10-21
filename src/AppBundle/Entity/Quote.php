@@ -134,4 +134,10 @@ class Quote
    */
   protected $hardening;
 
+  /**
+   * @Column(type="decimal", precision=10, scale=3,
+   *         nullable=false, options={"default"=0})
+   */
+  protected $zincPlating;
+
 }

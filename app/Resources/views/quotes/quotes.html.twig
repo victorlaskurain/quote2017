@@ -20,37 +20,29 @@
     <form id="quote-edit-form">
         <table>
             <tr>
-                <th>
-                    <label for="quote_id" class="control-label">
+                <td>
+                    <label for="quote_id" class="control-label add-for-total">
                         {% trans %}app.quote_number{% endtrans%}
                     </label>
-                </th>
-                <th>
+                    <input readonly
+                           class="form-control"
+                           type="number"
+                           name="id"
+                           id="quote_id">
+                </td>
+                <td>
                     <label for="quote_customer_id" class="control-label">
                         {% trans %}app.quote_customer{% endtrans%}
                     </label>
-                </th>
-                <th>
-                    <label for="quote_date" class="control-label">
-                        {% trans %}app.quote_date{% endtrans%}
-                    </label>
-                </th>
-            </tr>
-            <tr>
-                <td>
-                <input readonly
-                       class="form-control"
-                       type="number"
-                       name="id"
-                       id="quote_id">
-                </td>
-                <td>
                     <select class="form-control bootstrap-combobox"
                             name="customer_id"
                             id="quote_customer_id">
                     </select>
                 </td>
                 <td>
+                    <label for="quote_date" class="control-label">
+                        {% trans %}app.quote_date{% endtrans%}
+                    </label>
                     <input type="date"
                            class="form-control"
                            name="date"
@@ -58,38 +50,170 @@
                 </td>
             </tr>
             <tr>
-                <th colspan="3">
-                    <label for="quote_description" class="control-label">
-                        {% trans %}app.quote_description{% endtrans%}
-                    </label>
-                </th>
+                <td>
+                    <select class="form-control bootstrap-combobox"
+                            name="accepted"
+                            id="quote_accepted">
+                        <option value="0">{% trans %}No aceptado{% endtrans %}</option>
+                        <option value="1">{% trans %}Aceptado{% endtrans %}</option>
+                    </select>
+                </td>
+                <td></td>
+                <td></td>
             </tr>
             <tr>
                 <td colspan="3">
-                    <input type="text"
-                           class="form-control"
-                           name="description"
-                           id="quote_description">
+                    <label for="quote_description" class="control-label">
+                        {% trans %}app.quote_description{% endtrans%}
+                    </label>
+                    <textarea class="form-control"
+                              name="description"
+                              id="quote_description">
+                    </textarea>
                 </td>
             </tr>
             <tr>
-                <th></th>
-                <th></th>
-                <th>
-                    <label for="quote_shipping" class="control-label">
-                        {% trans %}app.quote_shipping{% endtrans%}
+                <td>
+                    <label for="quote_weight" class="control-label">
+                        {% trans %}app.unit_weight{% endtrans %}
                     </label>
-                </th>
+                    <input type="number"
+                           class="form-control"
+                           name="weight"
+                           id="quote_weight">
+                </td>
+                <td>
+                    <label for="quote_price" class="control-label">
+                        {% trans %}app.kg_price{% endtrans %}
+                    </label>
+                    <input type="number"
+                           class="form-control"
+                           name="price"
+                           id="quote_price">
+                </td>
+                <td>
+                    <label for="quote_unit_price" class="control-label">
+                        {% trans %}app.unit_price{% endtrans %}
+                    </label>
+                    <input type="number"
+                           class="form-control add-for-total"
+                           id="quote_unit_price"
+                           readonly="true">
+                </td>
             </tr>
             <tr>
-                <td></td>
-                <td></td>
                 <td>
-                    <input step="0.01"
-                           type="number"
-                           class="form-control"
+                    <label for="quote_saw" class="control-label">
+                        {% trans %}app.saw{% endtrans %}
+                    </label>
+                    <input type="number"
+                           class="form-control add-for-total"
+                           name="saw"
+                           id="quote_saw">
+                </td>
+                <td>
+                    <label for="quote_forge" class="control-label">
+                        {% trans %}app.forge{% endtrans %}
+                    </label>
+                    <input type="number"
+                           class="form-control add-for-total"
+                           name="forge"
+                           id="quote_forge">
+                </td>
+                <td>
+                    <label for="quote_annealing" class="control-label">
+                        {% trans %}app.annealing{% endtrans %}
+                    </label>
+                    <input type="number"
+                           class="form-control add-for-total"
+                           name="annealing"
+                           id="quote_annealing">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="quote_lathe" class="control-label">
+                        {% trans %}app.lathe{% endtrans %}
+                    </label>
+                    <input type="number"
+                           class="form-control add-for-total"
+                           name="lathe"
+                           id="quote_lathe">
+                </td>
+                <td>
+                    <label for="quote_threading" class="control-label">
+                        {% trans %}app.threading{% endtrans %}
+                    </label>
+                    <input type="number"
+                           class="form-control add-for-total"
+                           name="threading"
+                           id="quote_threading">
+                </td>
+                <td>
+                    <label for="quote_milling" class="control-label">{% trans %}app.milling{% endtrans %}
+                    </label>
+                    <input type="number"
+                           class="form-control add-for-total"
+                           name="milling"
+                           id="quote_milling">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="quote_drill" class="control-label">
+                        {% trans %}app.drill{% endtrans %}
+                    </label>
+                    <input type="number"
+                           class="form-control add-for-total"
+                           name="drill"
+                           id="quote_drill">
+                </td>
+                <td>
+                    <label for="quote_grinding" class="control-label">
+                        {% trans %}app.grinding{% endtrans %}
+                    </label>
+                    <input type="number"
+                           class="form-control add-for-total"
+                           name="grinding"
+                           id="quote_grinding">
+                </td>
+                <td>
+                    <label for="quote_cementation" class="control-label">
+                        {% trans %}app.cementation{% endtrans %}
+                    </label>
+                    <input type="number"
+                           class="form-control add-for-total"
+                           name="cementation"
+                           id="quote_cementation">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="quote_hardening" class="control-label">
+                        {% trans %}app.hardening{% endtrans %}
+                    </label>
+                    <input type="number"
+                           class="form-control add-for-total"
+                           name="hardening"
+                           id="quote_hardening">
+                </td>
+                <td>
+                    <label for="quote_shipping" class="control-label">
+                        {% trans %}app.shipping{% endtrans %}
+                    </label>
+                    <input type="number"
+                           class="form-control add-for-total"
                            name="shipping"
                            id="quote_shipping">
+                </td>
+                <td>
+                    <label for="zinc_plating" class="control-label">
+                        {% trans %}app.zinc_plating{% endtrans %}
+                    </label>
+                    <input type="number"
+                           class="form-control add-for-total"
+                           name="zinc_plating"
+                           id="quote_zinc_plating">
                 </td>
             </tr>
             <script id="generic-concept-tpl" type="text/html">
@@ -104,7 +228,7 @@
                         <input type="number"
                                name="generic_concepts[][amount]"
                                value="{amount}"
-                               class="form-control">&nbsp;
+                               class="form-control add-for-total">&nbsp;
                         <button data-tr-id="generic-concept-{id}" class="btn btn-default pull-right glyphicon glyphicon-remove remove-generic"></button>
                     </td>
                 </tr>
@@ -120,6 +244,21 @@
             <tr id="quote-generic-concept-footer">
                 <td colspan="3">
                     <button id="add-generic" class="btn btn-default pull-right glyphicon glyphicon-plus"></button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                    <label for="quote_total" class="control-label">
+                        {% trans %}app.total{% endtrans %}
+                    </label>
+                    <input type="number"
+                           class="form-control"
+                           id="quote_total"
+                           readonly="true">
                 </td>
             </tr>
             <tr>

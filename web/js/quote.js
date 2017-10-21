@@ -55,6 +55,7 @@ function init() {
     $(document).on("click", ".remove-generic", function() {
         var trId = $(this).attr("data-tr-id");
         $("#" + trId).remove();;
+        updateTotal();
         return false;
     });
     $(".bootstrap-combobox").combobox();
@@ -67,6 +68,8 @@ function init() {
         return false;
     });
     $(".new-quote").click(newQuote);
+    $("#quote_price,#quote_weight").change(updateUnitPrice);
+    $("#quote-edit-form").on("change", ".add-for-total", updateTotal);
     $("#quote-list-page").hide();
     $("#quote-edit-page").hide();
     api.getCustomers().then(function(customers) {
@@ -79,9 +82,6 @@ function init() {
         $("#quote_customer_id").combobox("refresh");
         loadQuoteGrid([{id: "", name: ""}].concat(customers.data));
         $("#quote-list-page").show();
-
-        // $("#quote-list-page").hide();
-        // $("#quote-edit-page").show();
     });
 }
 
@@ -187,9 +187,10 @@ function saveQuote() {
 
 function showQuote(quote) {
     api.getQuoteById(quote.id).then(function(quote) {
-        var key;
+        var key, $element;
         for (key in quote) {
-            $("#quote_" + key).val(quote[key]);
+            $("#quote_"  + key).val(quote[key]);
+            $("select#quote_" + key).combobox("refresh");
         }
         $("tr.generic-concept").remove();
         template.render(
@@ -197,6 +198,8 @@ function showQuote(quote) {
             $("#generic-concept-tpl").html(),
             $("#quote-generic-concept-footer"),
             "before");
+        updateUnitPrice();
+        updateTotal();
         $("#quote-list-page").hide();
         $("#quote-edit-page").show();
     });
@@ -207,9 +210,29 @@ function newQuote() {
     $("tr.generic-concept").remove();
     for (key in quote) {
         $("#quote_" + key).val(null);
+        $("select#quote_" + key).val(null).combobox("refresh");
     }
+    updateUnitPrice();
+    updateTotal();
     $("#quote-list-page").hide();
     $("#quote-edit-page").show();
+}
+
+function updateTotal() {
+    var total = $("#quote-edit-form input.add-for-total").map(function(i, e){
+        return Number($(e).val());})
+        .toArray()
+        .reduce(function(a, b){
+            return a + b;});
+    $("#quote_total").val(total);
+}
+window.updateTotal = updateTotal;
+
+function updateUnitPrice() {
+    $("#quote_unit_price").val(
+        Number($("#quote_price").val()) *
+        Number($("#quote_weight").val())
+    ).change();
 }
 
 init();

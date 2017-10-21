@@ -39,7 +39,7 @@ INSERT INTO $NEWDB.quote (
     price,
     milling,
     threading,
-    commissions,
+    zinc_plating,
     hardening,
     grinding)
 SELECT
