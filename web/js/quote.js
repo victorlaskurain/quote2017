@@ -68,6 +68,7 @@ function init() {
         return false;
     });
     $(".new-quote").click(newQuote);
+    $(".show-quote-list").click(showQuoteList);
     $("#quote_price,#quote_weight").change(updateUnitPrice);
     $("#quote-edit-form").on("change", ".add-for-total", updateTotal);
     $("#quote-list-page").hide();
@@ -203,6 +204,12 @@ function showQuote(quote) {
         $("#quote-list-page").hide();
         $("#quote-edit-page").show();
     });
+}
+
+function showQuoteList() {
+    $("#quote-list-page").show();
+    $("#quote-edit-page").hide();
+    return $("#quote-list").jsGrid("loadData");
 }
 
 function newQuote() {
