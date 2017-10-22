@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}app.customers{% endtrans %}{% endblock %}
+
+{% block stylesheets %}
+<link type="text/css" rel="stylesheet" href="{{ asset('lib/jsgrid/jsgrid.min.css') }}" />
+<link type="text/css" rel="stylesheet" href="{{ asset('lib/jsgrid/jsgrid-theme.min.css') }}" />
+{% endblock %}
+
+{% block content %}
+<div id="customer-list-page" class="app-page hide">
+    <h2>{% trans %}app.customers{% endtrans %}</h2>
+    <div id="customer-list"></div>
+    <p class="pull-right">
+        <button class="new-customer btn btn-default">{% trans %}app.create{% endtrans%}</button>
+    </p>
+</div>
+<div id="customer-edit-page" class="app-page hide">
+    <h2>{% trans %}app.customer{% endtrans %}</h2>
+    <form id="customer-edit-form">
+        <table>
+            <tr>
+                <td>
+                    <label for="customer_id" class="control-label add-for-total">
+                        {% trans %}app.customer_number{% endtrans%}
+                    </label>
+                    <input readonly
+                           class="form-control"
+                           type="number"
+                           name="id"
+                           id="customer_id">
+                </td>
+                <td colspan="2">
+                    <label for="customer_name" class="control-label">
+                        {% trans %}app.customer_name{% endtrans%}
+                    </label>
+                    <input class="form-control"
+                           name="name"
+                           id="customer_name">
+                </td>
+                <td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <br/>
+                    <p class="pull-right">
+                        <button id="customer-edit-cancel" class="btn btn-default">{% trans %}app.customer_cancel{% endtrans%}</button>
+                        <button id="customer-edit-save" class="btn btn-primary">{% trans %}app.customer_save{% endtrans%}</button>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <br/>
+    </form>
+</div>
+{% endblock %}
+
+
+{% block javascripts %}
+<script src="{{ asset('js/customersMain.js') }}"></script>
+{% endblock %}

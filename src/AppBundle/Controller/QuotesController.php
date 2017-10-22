@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class QuotesController extends Controller
 {
     /**
-     * @Route("/customers", name="customerList")
+     * @Route("/{_locale}/customers", name="customerList")
      */
     public function getCustomersAction(Request $request)
     {

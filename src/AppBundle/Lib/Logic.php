@@ -24,6 +24,23 @@ class Logic
         });
     }
 
+    public function addUpdateCustomer($customer)
+    {
+        $id = null;
+        $this->db->transactional(function($em) use ($customer, &$id) {
+            $db              = $this->db;
+            if (isset($customer['id'])) {
+                $id = $customer['id'];
+                // ensure customer to update exists
+                $dbCustomer = $db->getCustomerById($id);
+                $db->updateCustomer($customer);
+            } else {
+                $id = $db->addCustomer($customer);
+            }
+        });
+        return $id;
+    }
+
     public function addUpdateQuote($quote)
     {
         $id = null;

@@ -39,6 +39,11 @@ INSERT INTO $table ($columns)
         return $this->addRecord('quote_generic_concept', $concept);
     }
 
+    public function addCustomer($customer)
+    {
+        return $this->addRecord('customer', $customer);
+    }
+
     public function addQuote($quote)
     {
         return $this->addRecord('quote', $quote);
@@ -94,6 +99,16 @@ INSERT INTO $table ($columns)
             $orderBy,
             $limit,
             $vars);
+    }
+
+    public function getCustomerById($id)
+    {
+        $conn = $this->conn;
+        $sql = 'SELECT * FROM customer WHERE id = :id';
+        $params = array(
+            'id' => $id
+        );
+        return $conn->fetchAssoc($sql, $params);
     }
 
     public function getCustomersFilter($filter)
@@ -178,6 +193,11 @@ $where $order
     public function transactional($f)
     {
         return $this->em->transactional($f);
+    }
+
+    public function updateCustomer($customer)
+    {
+        return $this->updateRecord('customer', $customer);
     }
 
     public function updateQuote($quote)

@@ -124,7 +124,6 @@ function updateTotal() {
             return a + b;});
     $("#quote_total").val(total);
 }
-window.updateTotal = updateTotal;
 
 function updateUnitPrice() {
     $("#quote_unit_price").val(

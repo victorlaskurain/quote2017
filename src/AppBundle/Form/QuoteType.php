@@ -38,7 +38,7 @@ class QuoteType extends AbstractType
             ))
             ->add('grinding'        , MoneyType::class)
             ->add('hardening'       , MoneyType::class)
-            ->add('id'              , MoneyType::class)
+            ->add('id')
             ->add('lathe'           , MoneyType::class)
             ->add('milling'         , MoneyType::class)
             ->add('price'           , MoneyType::class)

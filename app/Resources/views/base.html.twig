@@ -46,8 +46,8 @@
                                aria-haspopup="true"
                                aria-expanded="false">{% trans %}app.customers{% endtrans %}</a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path("customerList") }}">{% trans %}app.show{% endtrans %}</a></li>
-                                <li><a href="#">{% trans %}app.create{% endtrans %}</a></li>
+                                <li><a href="{{ path("customerList") }}#" class="show-customer-list">{% trans %}app.show{% endtrans %}</a></li>
+                                <li><a href="{{ path("customerList") }}#~(page~'edit)" class="new-customer">{% trans %}app.create{% endtrans %}</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -84,6 +84,7 @@ var require = {
 define("appStrings", function() {
 return {
     "customer":          "{% trans %}app.customer{% endtrans %}",
+    "customer_number":   "{% trans %}app.customer_number{% endtrans %}",
     "quote_description": "{% trans %}app.quote_description{% endtrans %}",
     "quote_number":      "{% trans %}app.quote_number{% endtrans %}",
     "shipping":          "{% trans %}app.shipping{% endtrans %}",
