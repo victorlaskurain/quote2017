@@ -67,10 +67,17 @@ function loadQuoteGrid(customers) {
                 width: 100
             },
             {
+                title: strings.quote_date,
+                name: "date",
+                type: "text",
+                filtering: false,
+                width: 50
+            },
+            {
                 title: strings.quote_description,
                 name: "description",
                 type: "text",
-                width: 200
+                width: 150
             },
             {
                 title: strings.total,
