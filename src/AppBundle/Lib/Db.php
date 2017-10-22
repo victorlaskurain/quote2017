@@ -138,14 +138,37 @@ ORDER BY `order`';
     {
         $conn = $this->conn;
         foreach ($filter as $key => $val) {
-            if ($val === '') {
+            if ('' === $val) {
+                unset($filter[$key]);
+            }
+            if ('id' === $key) {
+                $filter['q.id'] = $val;
                 unset($filter[$key]);
             }
         }
         list($where, $order, $limit, $vars) =
             self::filterToMySqlQuery($conn, $filter);
-        $sql      = "SELECT *        FROM quote $where $order $limit";
-        $sqlCount = "SELECT COUNT(*) FROM quote $where $order";
+        $sql      = "
+SELECT q.*,
+       COALESCE(SUM(g.amount), 0) +
+       shipping + drill + lathe + forge + saw +
+       annealing + cementation + weight * price +
+       milling + threading + commissions +
+       grinding + hardening + zinc_plating AS total
+FROM      quote                 q
+LEFT JOIN quote_generic_concept g
+       ON q.id = g.quote_id
+$where
+GROUP BY q.id
+$order
+$limit
+";
+        $sqlCount = "
+SELECT COUNT(*),
+       0 AS total
+FROM quote q
+$where $order
+";
         return array(
             'data'       => $conn->fetchAll   ($sql     , $vars),
             'itemsCount' => $conn->fetchColumn($sqlCount, $vars)

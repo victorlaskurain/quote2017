@@ -34,8 +34,8 @@
                                aria-haspopup="true"
                                aria-expanded="false">{% trans %}app.quotes{% endtrans %}</a>
                             <ul class="dropdown-menu">
-                                <li><a class="show-quote-list">{% trans %}app.show{% endtrans %}</a></li>
-                                <li><a class="new-quote" href="#">{% trans %}app.create{% endtrans %}</a></li>
+                                <li><a href="{{ path('quoteList') }}#" class="show-quote-list">{% trans %}app.show{% endtrans %}</a></li>
+                                <li><a href="{{ path('quoteList') }}#~(page~'edit)" class="new-quote">{% trans %}app.create{% endtrans %}</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -64,7 +64,8 @@ var require = {
         "bootstrap-combobox": { "deps" :["jquery", "bootstrap"] },
         "jquery-ui": { "deps" :["jquery"] },
         "jsgrid":    { "deps" :["jquery"] },
-        "jsgrid-es": { "deps" :["jsgrid"] }
+        "jsgrid-es": { "deps" :["jsgrid"] },
+        "lib/jsurl": {}
     },
     baseUrl: "{{ asset('js') }}",
     paths: {
@@ -85,7 +86,8 @@ return {
     "customer":          "{% trans %}app.customer{% endtrans %}",
     "quote_description": "{% trans %}app.quote_description{% endtrans %}",
     "quote_number":      "{% trans %}app.quote_number{% endtrans %}",
-    "shipping":          "{% trans %}app.shipping{% endtrans %}"
+    "shipping":          "{% trans %}app.shipping{% endtrans %}",
+    "total"   :          "{% trans %}app.total{% endtrans %}"
 }
 });
 define("currentlocale", function() {

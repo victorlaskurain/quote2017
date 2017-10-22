@@ -8,14 +8,14 @@
 {% endblock %}
 
 {% block content %}
-<div id="quote-list-page">
+<div id="quote-list-page" class="app-page hide">
     <h2>{% trans %}app.quotes{% endtrans %}</h2>
     <div id="quote-list"></div>
     <p class="pull-right">
         <button class="new-quote btn btn-default">{% trans %}app.create{% endtrans%}</button>
     </p>
 </div>
-<div id="quote-edit-page">
+<div id="quote-edit-page" class="app-page hide">
     <h2>{% trans %}app.quote{% endtrans %}</h2>
     <form id="quote-edit-form">
         <table>
@@ -278,5 +278,5 @@
 
 
 {% block javascripts %}
-<script src="{{ asset('js/quote.js') }}"></script>
+<script src="{{ asset('js/quotesMain.js') }}"></script>
 {% endblock %}
