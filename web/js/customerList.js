@@ -45,7 +45,6 @@ function loadCustomerGrid(customers) {
         autoload: false,
 
         rowClick: function(obj) {
-            console.log(["rowClick", obj.item, obj.itemIndex, obj.event]);
             $("#customer-list-page").trigger("customerList:selectCustomer", obj.item);;
 
         },
@@ -69,7 +68,6 @@ function loadCustomerGrid(customers) {
 
 function showCustomerList() {
     return loaded.then(function() {
-        console.log("showCustomerList");
         location.hash = "";
         $(".app-page").addClass("hide");
         $("#customer-list-page").removeClass("hide");

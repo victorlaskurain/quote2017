@@ -102,7 +102,6 @@ function showQuote(quote) {
 }
 
 function newQuote() {
-    console.log("newQuote");
     var quote = $('#quote-edit-form').serializeJSON(), key;
     $("tr.generic-concept").remove();
     for (key in quote) {

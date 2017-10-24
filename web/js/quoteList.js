@@ -45,7 +45,6 @@ function loadQuoteGrid(customers) {
         autoload: false,
 
         rowClick: function(obj) {
-            console.log(["rowClick", obj.item, obj.itemIndex, obj.event]);
             $("#quote-list-page").trigger("quoteList:selectQuote", obj.item);;
 
         },
@@ -97,7 +96,6 @@ function loadQuoteGrid(customers) {
     $(".jsgrid-filter-row input").addClass("form-control");
     // hack to show jsGrid combo box filter in position
     function setPosAbsolute() {
-        console.log(["setPosAbsolute"]);
         var $combo = $(this),
             pos    = $combo.position(),
             width  = $combo.width();
@@ -107,7 +105,6 @@ function loadQuoteGrid(customers) {
         $(this).css("position", "absolute");
     }
     function setPosStatic() {
-        console.log(["setPosStatic"]);
         $(this).css("position", "static");
         $(this).css("width"   , "100%");
     }
@@ -143,7 +140,6 @@ function loadQuoteGrid(customers) {
 
 function showQuoteList() {
     return loaded.then(function() {
-        console.log("showQuoteList");
         location.hash = "";
         $(".app-page").addClass("hide");
         $("#quote-list-page").removeClass("hide");

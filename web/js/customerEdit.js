@@ -62,7 +62,6 @@ function showCustomer(customer) {
 }
 
 function newCustomer() {
-    console.log("newCustomer");
     var customer = $('#customer-edit-form').serializeJSON(), key;
     for (key in customer) {
         $("#customer_" + key).val(null);
