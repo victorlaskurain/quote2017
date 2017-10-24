@@ -2,7 +2,7 @@ body {
     padding-top: 50px;
 }
 
-#quote-list-page {
+#quote-list-page, #customer-list-page {
     height: 75vh;
 }
 
