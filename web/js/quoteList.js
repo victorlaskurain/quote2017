@@ -95,31 +95,47 @@ function loadQuoteGrid(customers) {
     // filters with bootstrap styles.
     $(".jsgrid-filter-row select").combobox();
     $(".jsgrid-filter-row input").addClass("form-control");
+    // hack to show jsGrid combo box filter in position
+    function setPosAbsolute() {
+        console.log(["setPosAbsolute"]);
+        var $combo = $(this),
+            pos    = $combo.position(),
+            width  = $combo.width();
+        $combo.css("position", "absolute");
+        $combo.css("top", pos.top + "px");
+        $combo.width(width);
+        $(this).css("position", "absolute");
+    }
+    function setPosStatic() {
+        console.log(["setPosStatic"]);
+        $(this).css("position", "static");
+        $(this).css("width"   , "100%");
+    }
+    $(document).on(
+        "focus",
+        ".jsgrid-filter-row td>div.combobox-container",
+        setPosAbsolute);
+    $(document).on(
+        "blur",
+        ".jsgrid-filter-row td>div.combobox-container",
+        setPosStatic);
     (function() {
         // resize bootstrap-combobox at window resizing and at the
         // same time keep options visible.
         var resizeTimer,
-            beginResize = true;
+            resizeBegin = true;
         $(window).on('resize', function(e) {
-            if (beginResize) {
-                $('.jsgrid-filter-row td>div.combobox-container').css(
-                    'position',
-                    'static');
-                beginResize = false;
+            if (resizeBegin) {
+                $('.jsgrid-filter-row td>div.combobox-container').map(
+                    function(i, combo) {
+                        setPosStatic.bind(combo)();
+                    });
+                resizeBegin = false;
             }
             window.clearTimeout(resizeTimer);
             resizeTimer = window.setTimeout(function() {
                 // Run code here, resizing has "stopped"
-                beginResize = true;
-                $('.jsgrid-filter-row td>div.combobox-container')
-                    .map(function(i, combo) {
-                        var $combo = $(combo),
-                            pos    = $combo.position(),
-                            width  = $combo.width();
-                        $combo.css('position', 'absolute');
-                        $combo.css('top', pos.top + 'px');
-                        $combo.width(width);
-                    });
+                resizeBegin = true;
             }, 250);
         });
     }());

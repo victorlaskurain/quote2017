@@ -10,15 +10,6 @@ input[type=number] {
     text-align: right;
 }
 
-
-/**
- * Hack to show bootstrap-combobox as filter. Without this hack the
- * options don't display correctly.
- */
-.jsgrid-filter-row td>div.combobox-container {
-    xxposition: absolute;
-    xxtop: 3.1em;
-}
 .jsgrid-filter-row td>div.combobox-container input {
     text-align: left;
 }
