@@ -79,3 +79,13 @@ jms_translation:
             output_dir: '%kernel.root_dir%/Resources/translations'
             output-format: xliff
             keep: true
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+
+jms_i18n_routing:
+    default_locale: es
+    locales: [en, es, eu]
+    strategy: prefix

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2017-10-22T23:46:53Z" source-language="en" target-language="es" datatype="plaintext" original="not.available">
+  <file date="2017-10-25T23:51:07Z" source-language="en" target-language="es" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -42,7 +42,7 @@
       <trans-unit id="cf84a794cc1ba412cb3fc604bd08548832c13aaf" resname="app.customer">
         <source>app.customer</source>
         <target>Cliente</target>
-        <jms:reference-file line="86">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="91">/Resources/views/base.html.twig</jms:reference-file>
         <jms:reference-file line="19">/Resources/views/quotes/customers.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="78fe5f1d37a5b7ba5f53514e38e34cde532c8662" resname="app.customer_cancel">
@@ -58,7 +58,7 @@
       <trans-unit id="6d8453dd3ef8e7288544e9dc26f2f0f9a068c405" resname="app.customer_number">
         <source>app.customer_number</source>
         <target>Nº cliente</target>
-        <jms:reference-file line="87">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="92">/Resources/views/base.html.twig</jms:reference-file>
         <jms:reference-file line="25">/Resources/views/quotes/customers.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="55094f542d467edf25203cd44c5de4f405cf6f73" resname="app.customer_save">
@@ -103,6 +103,11 @@
         <target>Torno</target>
         <jms:reference-file line="136">/Resources/views/quotes/quotes.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="e206d3d3d4700984889dc8464548630cc4f087ea" resname="app.logout">
+        <source>app.logout</source>
+        <target>Salir</target>
+        <jms:reference-file line="55">/Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="d5e5e69f79fa8b3272f161328f7cc9ae4bcc7188" resname="app.milling">
         <source>app.milling</source>
         <target>Fresa</target>
@@ -131,19 +136,19 @@
       <trans-unit id="42f9a22bf888c52027e611adb4a1557eae530e82" resname="app.quote_date">
         <source>app.quote_date</source>
         <target>Fecha</target>
-        <jms:reference-file line="91">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="96">/Resources/views/base.html.twig</jms:reference-file>
         <jms:reference-file line="44">/Resources/views/quotes/quotes.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f0d9e6f4eb9ef7888c3f6d1f4d0e56e3fafbe2b6" resname="app.quote_description">
         <source>app.quote_description</source>
         <target>Descripción</target>
-        <jms:reference-file line="88">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="93">/Resources/views/base.html.twig</jms:reference-file>
         <jms:reference-file line="67">/Resources/views/quotes/quotes.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="11e8fc6bc263d40a1c03d85add957f8e44b6c852" resname="app.quote_number">
         <source>app.quote_number</source>
         <target>Nº presupuesto</target>
-        <jms:reference-file line="89">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="94">/Resources/views/base.html.twig</jms:reference-file>
         <jms:reference-file line="25">/Resources/views/quotes/quotes.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9e6aba5b1f1181a0f1b972e89b3a0459a7920ea6" resname="app.quote_save">
@@ -176,7 +181,7 @@
       <trans-unit id="f53928901ea8642ce0969ae2e3489534066747a6" resname="app.shipping">
         <source>app.shipping</source>
         <target>Portes</target>
-        <jms:reference-file line="90">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="95">/Resources/views/base.html.twig</jms:reference-file>
         <jms:reference-file line="202">/Resources/views/quotes/quotes.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3d0224690ed3ea970b5b7f4ea093e17e7bc6fe9b" resname="app.show">
@@ -193,7 +198,7 @@
       <trans-unit id="54686206b76f755f47d4bdbd1f6ca1226dec028d" resname="app.total">
         <source>app.total</source>
         <target>Total</target>
-        <jms:reference-file line="92">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="97">/Resources/views/base.html.twig</jms:reference-file>
         <jms:reference-file line="256">/Resources/views/quotes/quotes.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9aad0d3df1c250d807fd662d562acbf7d97ee1c6" resname="app.unit_price">

@@ -34,3 +34,15 @@ input[type=number] {
 form > table td {
     padding: 0 5px 5px 0;
 }
+
+#fos-user-content {
+    max-width: 30em;
+    margin: 1em auto;
+}
+
+#fos-user-content input {
+    width: 100%;
+}
+#fos-user-content input[type=checkbox] {
+    width: auto;
+}

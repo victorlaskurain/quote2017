@@ -13,6 +13,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body lang="{{ app.request.locale }}">
+        {% block menu %}
         <nav id="main-menu" class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -50,10 +51,16 @@
                                 <li><a href="{{ path("customerList") }}#~(page~'edit)" class="new-customer">{% trans %}app.create{% endtrans %}</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="/logout">
+                                {% trans %}app.logout{% endtrans %}
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
+        {% endblock %}
         <div id="content" class="container">
             {% block content %}{% endblock %}
         </div>
