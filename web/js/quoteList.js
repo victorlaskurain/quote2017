@@ -14,6 +14,18 @@ function($, strings, api, locale, template){
 
 var quoteController = {
     loadData: function(filter) {
+        var fromDate = $("#quote-date-min").val().trim(),
+            toDate   = $("#quote-date-max").val().trim();
+        if (fromDate) {
+            filter['date'] = ['>=', fromDate];
+        }
+        if (toDate) {
+            if (filter['date']) {
+                filter['date'] = filter['date'].concat(['<=', toDate]);
+            } else {
+                filter['date'] = ['<=', toDate];
+            }
+        }
         return api.getQuotes(filter);
     }
 }, loaded;
@@ -25,6 +37,9 @@ function init() {
     $("#quote-list-page").on("click", ".new-quote", function() {
         $("#quote-list-page").trigger("quoteList:newQuote");
         return false;
+    });
+    $("#quote-date-range input").on("blur", function() {
+        $("#quote-list").jsGrid("loadData");
     });
     loaded = api.getCustomers().then(function(customers) {
         loadQuoteGrid([{id: "", name: ""}].concat(customers.data));

@@ -10,6 +10,22 @@
 {% block content %}
 <div id="quote-list-page" class="app-page hide">
     <h2>{% trans %}app.quotes{% endtrans %}</h2>
+    <form action="#" id="quote-date-range" class="form-group form-inline">
+        <label for="quote-date-min" class="control-label">
+            {% trans %}app.quote-date-min{% endtrans %}:
+        </label>
+        <input type="date"
+               class="form-control"
+               name="quote-date-min"
+               id="quote-date-min">
+        <label for="quote-date-max" class="control-label">
+            {% trans %}app.quote-date-max{% endtrans %}:
+        </label>
+        <input type="date"
+               class="form-control"
+               name="quote-date-max"
+               id="quote-date-max">
+    </form>
     <div id="quote-list"></div>
     <p class="pull-right">
         <button class="new-quote btn btn-default">{% trans %}app.create{% endtrans%}</button>
