@@ -85,10 +85,23 @@ INSERT INTO $table ($columns)
         $whereArray = array('TRUE');
         $vars  = array();
         foreach ($filter as $col => $val) {
-            $col          = $conn->quoteIdentifier($col);
-            $var          = 'filterVar_' . count($vars);
-            $whereArray[] = "$col LIKE :$var";
-            $vars[$var]   = $val;
+            $col = $conn->quoteIdentifier($col);
+            if (is_array($val)) {
+                for ($i = 0; $i < count($val); $i += 2) {
+                    $op    = $val[$i];
+                    $value = $val[$i + 1];
+                    $var   = 'filterVar_' . count($vars) . "_$i";
+                    assert(in_array(
+                        $op,
+                        array('<', '<=', '=', '>=', '>', '<>', 'LIKE')));
+                    $whereArray[] = "$col $op :$var";
+                    $vars[$var]   = $value;
+                }
+            } else {
+                $var           = 'filterVar_' . count($vars);
+                $whereArray[] = "$col LIKE :$var";
+                $vars[$var]   = $val;
+            }
         }
         $where = 'WHERE ' . implode(' AND ', $whereArray);
         if (!empty($orderBy)) {
