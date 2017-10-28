@@ -41,6 +41,7 @@ class QuoteType extends AbstractType
             ->add('id')
             ->add('lathe'           , MoneyType::class)
             ->add('milling'         , MoneyType::class)
+            ->add('number_of_day')
             ->add('price'           , MoneyType::class)
             ->add('saw'             , MoneyType::class)
             ->add('shipping'        , MoneyType::class)

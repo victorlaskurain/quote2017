@@ -37,14 +37,14 @@
         <table>
             <tr>
                 <td>
-                    <label for="quote_id" class="control-label add-for-total">
+                    <input type="hidden" name="id" id="quote_id">
+                    <label for="quote_number_of_day" class="control-label add-for-total">
                         {% trans %}app.quote_number{% endtrans%}
                     </label>
-                    <input readonly
-                           class="form-control"
+                    <input class="form-control"
                            type="number"
-                           name="id"
-                           id="quote_id">
+                           name="number_of_day"
+                           id="quote_number_of_day">
                 </td>
                 <td>
                     <label for="quote_customer_id" class="control-label">
