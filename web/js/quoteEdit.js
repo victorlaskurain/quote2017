@@ -11,6 +11,20 @@ function($, api, locale, template){
 
 var quoteForm = $("#quote-edit-form");
 
+function addGenericConcept() {
+    var trId = $("#add-generic").data("tr-id");
+    $("#add-generic").data("tr-id", trId - 1);
+    template.render(
+        {
+            amount: 0,
+            id: trId
+        },
+        $("#generic-concept-tpl").html(),
+        $("#quote-generic-concept-footer"),
+        "before");
+    return false;
+}
+
 function cancelQuoteEdit() {
     quoteForm.trigger("quoteEdit:done", [{saved: false}]);
 }
@@ -30,16 +44,7 @@ function editQuote(quote) {
 function init() {
     $("#add-generic").data("tr-id", -1);
     $("#add-generic").click(function() {
-        var trId = $("#add-generic").data("tr-id");
-        $("#add-generic").data("tr-id", trId - 1);
-        template.render(
-            {
-                amount: 0,
-                id: trId
-            },
-            $("#generic-concept-tpl").html(),
-            $("#quote-generic-concept-footer"),
-            "before");
+        addGenericConcept();
         return false;
     });
     quoteForm.on("click", ".remove-generic", function() {
@@ -108,6 +113,7 @@ function newQuote() {
         $("#quote_" + key).val(null);
         $("select#quote_" + key).val(null).combobox("refresh");
     }
+    addGenericConcept();
     updateUnitPrice();
     updateTotal();
     $(".app-page").addClass("hide");
