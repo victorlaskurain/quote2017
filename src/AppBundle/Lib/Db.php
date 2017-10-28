@@ -197,8 +197,12 @@ SELECT COUNT(*),
 FROM quote q
 $where $order
 ";
+        $data = $conn->fetchAll($sql, $vars);
+        foreach ($data as &$d) {
+            $d['accepted'] = (bool)$d['accepted'];
+        }
         return array(
-            'data'       => $conn->fetchAll   ($sql     , $vars),
+            'data'       => $data,
             'itemsCount' => $conn->fetchColumn($sqlCount, $vars)
         );
     }
