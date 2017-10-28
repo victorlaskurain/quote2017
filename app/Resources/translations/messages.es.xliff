@@ -223,7 +223,7 @@
       </trans-unit>
       <trans-unit id="2e30af1934fcb5937d18add39d1a4dcd84357cf7" resname="app.zinc_plating">
         <source>app.zinc_plating</source>
-        <target>Cincado y bicromatado</target>
+        <target>Recubrimiento</target>
         <jms:reference-file line="227">/Resources/views/quotes/quotes.html.twig</jms:reference-file>
       </trans-unit>
     </body>
