@@ -3,7 +3,7 @@ body {
 }
 
 #quote-list-page, #customer-list-page {
-    height: 75vh;
+    height: 70vh;
 }
 
 input[type=number] {
