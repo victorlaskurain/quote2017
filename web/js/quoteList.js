@@ -26,6 +26,9 @@ var quoteController = {
                 filter['date'] = ['<=', toDate];
             }
         }
+        if (filter.accepted !== undefined) {
+            filter.accepted = Number(filter.accepted);
+        }
         return api.getQuotes(filter);
     }
 }, loaded;
@@ -67,7 +70,7 @@ function loadQuoteGrid(customers) {
         fields: [
             {
                 title: strings.quote_number,
-                name: "id",
+                name: "number_of_day",
                 type: "number",
                 width: 50
             },
@@ -85,7 +88,14 @@ function loadQuoteGrid(customers) {
                 name: "date",
                 type: "text",
                 filtering: false,
-                width: 50
+                width: 35
+            },
+            {
+                title: strings.accepted,
+                name: "accepted",
+                type: "checkbox",
+                filtering: true,
+                width: 30
             },
             {
                 title: strings.quote_description,

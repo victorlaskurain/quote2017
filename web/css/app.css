@@ -13,6 +13,9 @@ input[type=number] {
 .jsgrid-filter-row td>div.combobox-container input {
     text-align: left;
 }
+.jsgrid-filter-row td input[type=checkbox] {
+    width: 100%;
+}
 
 
 /**
