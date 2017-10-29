@@ -4,6 +4,7 @@ define([
     "api",
     "locale",
     "template",
+    "moment-localized",
     "jsgrid",
     "jsgrid-es",
     "bootstrap-combobox",
@@ -11,12 +12,19 @@ define([
     "lib/jquery.serializejson",
     "lib/jsurl"
 ],
-function($, strings, api, locale, template){
+function($, strings, api, locale, template, moment){
 
 var quoteController = {
     loadData: function(filter) {
         var fromDate = getDatepickerIsoDate("#quote-date-min"),
             toDate   = getDatepickerIsoDate("#quote-date-max");
+        function localizeDates(quotes) {
+            quotes.data = quotes.data.map(function(quote) {
+                quote.date = moment(quote.date).format("L");
+                return quote;
+            });
+            return quotes;
+        }
         if (fromDate) {
             filter['date'] = ['>=', fromDate];
         }
@@ -30,7 +38,7 @@ var quoteController = {
         if (filter.accepted !== undefined) {
             filter.accepted = Number(filter.accepted);
         }
-        return api.getQuotes(filter);
+        return api.getQuotes(filter).then(localizeDates);
     }
 }, loaded;
 
