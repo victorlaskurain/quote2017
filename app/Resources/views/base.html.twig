@@ -28,6 +28,7 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
+{% if is_granted("ROLE_QUOTE_EDIT") %}
                             <a href="#"
                                class="dropdown-toggle"
                                data-toggle="dropdown"
@@ -38,7 +39,9 @@
                                 <li><a href="{{ path('quoteList') }}#" class="show-quote-list">{% trans %}app.show{% endtrans %}</a></li>
                                 <li><a href="{{ path('quoteList') }}#~(page~'edit)" class="new-quote">{% trans %}app.create{% endtrans %}</a></li>
                             </ul>
+{% endif %}
                         </li>
+{% if is_granted("ROLE_CUSTOMER_EDIT") %}
                         <li class="dropdown">
                             <a href="#"
                                class="dropdown-toggle"
@@ -51,6 +54,7 @@
                                 <li><a href="{{ path("customerList") }}#~(page~'edit)" class="new-customer">{% trans %}app.create{% endtrans %}</a></li>
                             </ul>
                         </li>
+{% endif %}
                         <li>
                             <a href="/logout">
                                 {% trans %}app.logout{% endtrans %}
