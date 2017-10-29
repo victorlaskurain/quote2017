@@ -4,6 +4,7 @@ define([
     "locale",
     "template",
     "bootstrap-combobox",
+    "bootstrap-datepicker",
     "lib/jquery.serializejson",
     "lib/jsurl"
 ],
@@ -76,10 +77,14 @@ function init() {
 }
 
 function saveQuote() {
-    var quote = $('#quote-edit-form').serializeJSON();
+    var quote = $("#quote-edit-form").serializeJSON({parseAll: true});
     if (quote.id == "") {
         quote.id = "new";
     }
+    quote.date = $("#quote_date")
+        .datepicker("getUTCDate")
+        .toISOString()
+        .substr(0, 10);
     return api.saveQuote(quote.id, quote)
         .then(function() {
             quoteForm.trigger("quoteEdit:done", [{saved: true}]);
@@ -93,6 +98,7 @@ function showQuote(quote) {
             $("#quote_"  + key).val(quote[key]);
             $("select#quote_" + key).combobox("refresh");
         }
+        $("#quote_date").datepicker("setUTCDate", new Date(quote.date));
         $("tr.generic-concept").remove();
         template.render(
             quote.generic_concepts,
@@ -111,6 +117,9 @@ function newQuote() {
     $("tr.generic-concept").remove();
     for (key in quote) {
         $("#quote_" + key).val(null);
+        $("#quote_" + key + "[type=number]").val(0);
+        $("#quote_" + key + "[data-provide=datepicker]")
+            .datepicker("setUTCDate", new Date());
         $("select#quote_" + key).val(null).combobox("refresh");
     }
     addGenericConcept();

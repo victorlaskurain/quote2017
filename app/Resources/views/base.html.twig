@@ -69,6 +69,11 @@ var require = {
     shim: {
         "bootstrap": { "deps" :["jquery"] },
         "bootstrap-combobox": { "deps" :["jquery", "bootstrap"] },
+        "bootstrap-datepicker": { "deps" :["jquery", "bootstrap"] },
+        "bootstrap-datepicker/locale/bootstrap-datepicker.es.min": { "deps": ["bootstrap-datepicker"] },
+        "bootstrap-datepicker/locale/bootstrap-datepicker.en.min": { "deps": ["bootstrap-datepicker"] },
+        "bootstrap-datepicker/locale/bootstrap-datepicker.eu.min": { "deps": ["bootstrap-datepicker"] },
+        "bootstrap-datepicker/locale": { "deps": ["bootstrap-datepicker"] },
         "jquery-ui": { "deps" :["jquery"] },
         "jsgrid":    { "deps" :["jquery"] },
         "jsgrid-es": { "deps" :["jsgrid"] },
@@ -78,6 +83,8 @@ var require = {
     paths: {
         "bootstrap": "{{ asset('lib/bootstrap/js/bootstrap.min') }}",
         "bootstrap-combobox": "{{ asset('lib/bootstrap-combobox/bootstrap-combobox') }}",
+        "bootstrap-datepicker": "{{ asset('lib/bootstrap-datepicker/js/bootstrap-datepicker.min') }}",
+        "bootstrap-datepicker/locale": "{{asset('lib/bootstrap-datepicker/locales')}}",
         "jquery":    "{{ asset('lib/jquery') }}",
         "jquery-ui": "{{ asset('lib/jquery-ui/jquery-ui.min') }}",
         "jsgrid":    "{{ asset('lib/jsgrid/jsgrid') }}",
@@ -100,12 +107,19 @@ return {
     "total"   :          "{% trans %}app.total{% endtrans %}"
 }
 });
-define("currentlocale", function() {
+define("currentlocale",
+[
+    "bootstrap-datepicker/locale/bootstrap-datepicker.es.min"
+],
+function() {
 return "{{ app.request.locale }}";
 });
         </script>
         <script>
-require(["bootstrap"], function(){});
+require([
+    "bootstrap"
+],
+function(){});
         </script>
         {% block javascripts %}
         {% endblock %}

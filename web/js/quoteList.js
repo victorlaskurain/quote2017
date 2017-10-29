@@ -7,6 +7,7 @@ define([
     "jsgrid",
     "jsgrid-es",
     "bootstrap-combobox",
+    "bootstrap-datepicker",
     "lib/jquery.serializejson",
     "lib/jsurl"
 ],
@@ -14,8 +15,8 @@ function($, strings, api, locale, template){
 
 var quoteController = {
     loadData: function(filter) {
-        var fromDate = $("#quote-date-min").val().trim(),
-            toDate   = $("#quote-date-max").val().trim();
+        var fromDate = getDatepickerIsoDate("#quote-date-min"),
+            toDate   = getDatepickerIsoDate("#quote-date-max");
         if (fromDate) {
             filter['date'] = ['>=', fromDate];
         }
@@ -33,10 +34,21 @@ var quoteController = {
     }
 }, loaded;
 
+function getDatepickerIsoDate(dp) {
+    var date = $(dp).datepicker("getUTCDate");
+    if (date) {
+        return date.toISOString().substr(0, 10);
+    } else {
+        return $(dp).val();
+    }
+
+}
+
 function init() {
     if (locale.locale != "en") {
         jsGrid.locale(locale.locale);
     }
+    $("#quote-list-page [data-provide=datepicker]").datepicker();
     $("#quote-list-page").on("click", ".new-quote", function() {
         $("#quote-list-page").trigger("quoteList:newQuote");
         return false;

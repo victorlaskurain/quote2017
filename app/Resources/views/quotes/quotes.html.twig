@@ -17,14 +17,20 @@
         <input type="date"
                class="form-control"
                name="quote-date-min"
-               id="quote-date-min">
+               id="quote-date-min"
+               data-provide="datepicker"
+               data-date-language="{{ app.request.locale }}"
+               data-date-autoclose="true">
         <label for="quote-date-max" class="control-label">
             {% trans %}app.quote-date-max{% endtrans %}:
         </label>
         <input type="date"
                class="form-control"
                name="quote-date-max"
-               id="quote-date-max">
+               id="quote-date-max"
+               data-provide="datepicker"
+               data-date-language="{{ app.request.locale }}"
+               data-date-autoclose="true">
     </form>
     <div id="quote-list"></div>
     <p class="pull-right">
@@ -62,7 +68,10 @@
                     <input type="date"
                            class="form-control"
                            name="date"
-                           id="quote_date">
+                           id="quote_date"
+                           data-provide="datepicker"
+                           data-date-language="{{ app.request.locale }}"
+                           data-date-autoclose="true">
                 </td>
             </tr>
             <tr>
