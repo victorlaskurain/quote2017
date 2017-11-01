@@ -9,9 +9,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+/**
+ * This controller implements a web service. This web service provides
+ * an API to implement the application's GUI.
+ */
 class ApiController extends Controller
 {
     /**
+     * Returns the list of the customers filtered according to the
+     * request parameters. The request parameters are in the format
+     * sent by the Jsgrid component. The response is in the format
+     * required by the Jsgrid component. The data formats are flexible
+     * enough for most cases and aligning them keeps the
+     * implementation simple.
+     *
      * @Route("/api/customers", name="apiCustomerList")
      */
     public function getCustomersAction(Request $request)
@@ -22,6 +33,10 @@ class ApiController extends Controller
     }
 
     /**
+     * With GET returns a JSON object with the data of the
+     * customers. With POST uses the CustomerType form to validate the
+     * data and if the validations passes updates the DB.
+     *
      * @Route("/api/customers/{id}",
      *        name="apiGetCustomerById")
      */
@@ -49,6 +64,8 @@ class ApiController extends Controller
     }
 
     /**
+     * This function is analogous to getCustomersAction.
+     *
      * @Route("/api/quotes", name="apiQuoteList")
      */
     public function getQuotesAction(Request $request)
@@ -59,6 +76,7 @@ class ApiController extends Controller
     }
 
     /**
+     * This functon is analogous to getCustomerByIdAction.
      * @Route("/api/quotes/{id}",
      *        name="apiGetQuoteById")
      */

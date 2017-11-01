@@ -12,8 +12,10 @@
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
+    <!-- Define the locale to have the number inputs format the numbers correctly -->
     <body lang="{{ app.request.locale }}">
         {% block menu %}
+        <!-- Bootstrap menu fixed, fixed on top of the page -->
         <nav id="main-menu" class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -28,6 +30,7 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
+                            <!-- Only show a menu link if the users has the required permissions to access it -->
 {% if is_granted("ROLE_QUOTE_EDIT") %}
                             <a href="#"
                                class="dropdown-toggle"
@@ -69,6 +72,12 @@
             {% block content %}{% endblock %}
         </div>
         <script>
+/**
+ * Require.js configuration. The shim property is the requrie.js way of
+ * defining dependencies for Javascript modules which do not follow the
+ * AMD format. Defining a shim does not load anything, it only defines the
+ * dependencies to ensure proper load order.
+ */
 var require = {
     shim: {
         "bootstrap": { "deps" :["jquery"] },
@@ -99,6 +108,12 @@ var require = {
         </script>
         <script src="{{ asset('lib/require.js') }}"></script>
         <script>
+/**
+ * This is a simple way to export translated strings from the twig files
+ * to Javascript. To have any text translated in Javascript just add it
+ * to this module and require de appStrings module wherever you need the
+ * translation.
+ */
 define("appStrings", function() {
 return {
     "accepted":          "{% trans %}app.accepted{% endtrans %}",
@@ -112,8 +127,17 @@ return {
     "total"   :          "{% trans %}app.total{% endtrans %}"
 }
 });
+
+/**
+ * This is a simple way to export the requests locale to Javascript.
+ */
 define("currentlocale",
 [
+/*
+ * load datepicker translation files. Loading only the current locale's
+ * translation would be enough but sadly bootstrap-datepicker.en.min does
+ * not exist.
+ */
     "bootstrap-datepicker/locale/bootstrap-datepicker.es.min"
 ],
 function() {

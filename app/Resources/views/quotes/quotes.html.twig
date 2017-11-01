@@ -241,6 +241,15 @@
                            id="quote_zinc_plating">
                 </td>
             </tr>
+ <!--
+This is a trick to define the templates for the the dynamic parts of
+your application where they belong: together with the rest of the
+HTML. The trick is to put the template inside a script tag with a
+type="text/html" attribute (any value other than "javascript" goes,
+really). The simple template engine used replaces all the variable
+references (things like "{amount}") for concrete values. The template
+engine is defined in the web/js/template.js file.
+ -->
             <script id="generic-concept-tpl" type="text/html">
                 <tr class="generic-concept" id="generic-concept-{id}">
                     <td colspan="2">

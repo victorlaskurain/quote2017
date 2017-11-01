@@ -1,4 +1,66 @@
-quotes2017
-==========
+# quotes2017 #
 
-A Symfony project created on October 12, 2017, 5:24 pm.
+A   simple  but   hopefully   not  trivial   example   of  a   Symfony
+application.  It  is  expected  to  serve as  an  example  of  several
+important and common techniques.
+
+- HTML5 single page applications.
+- Symfony form validation.
+- Symfony/Doctrine entity creation and migrations.
+- Ajax APIs.
+- Basic bootstrap and jquery.
+- i18n  and l10n using  the JMSTranslationBundle for  translations and
+  JMSI18nRoutingBundle to automatically generate locale dependant URL.
+-  Authentication   and  access   control  using  Symfony   roles  and
+  FOSUserBundle.
+
+## General architecture ##
+
+The application has two functionalities:
+
+- Visualization an edition of quotes.
+- Visualization an edition of customers to whome quotes might be sent.
+
+The  application could  have been  implemented as  a single  page HTML
+application.  Instead,  we  chose  to   implement  each  of  the  main
+functionalities as a  separate single page HTML5  application in order
+to  show how  to develop  a  hybrid (single  page HTML5/classic  HTML)
+application.
+
+The  applications is  localized  using URL  parameters  to select  the
+requests locale.
+
+The application follows in general the best practices described in the
+Synfomy documentation. There are a few important exceptions:
+
+- It avoids the use of the  ORM. Instead it uses a thin DB abstraction
+  layer which directly speaks SQL.
+
+- The  application has separate  controllers for  the GUI and  for the
+  REST API. The GUI controller just  generates the HTML and serves the
+  required JS  and CSS  files.  All the  data access  and modification
+  operations (CRUD) go through the API controller.
+
+- It  uses  Symfony  forms  only for  validation,  not  for HTML  form
+  generation. This follows from the fact the CRUD operations don't go
+  through any HTML.
+
+The application does use doctrine entities to define the application's
+data model but  only insofar they are  useful as a tool  to generate a
+solid schema and the migrations to develop it incrementally. It is the
+experience of  the developers that  the ORM is  more of burden  than a
+blessing.
+
+The  code  is  not  portable  across  DBMS:  the  DB  layer  is  MySQL
+dependant. On the other hand,  porting the application to another DBMS
+would  only require  the rewriting  of some  of the  functions of  the
+Db.php file.
+
+## Javascript ##
+
+All the Javascript code written for the application is in AMD modules.
+You  will  find  all  these  modules in  the  web/js  directory.   The
+applications uses  the require.js'  shim configuration option  to load
+the external Javascript  libraries also as AMD  modules, although this
+is not possible  in every instance. The  external Javascript libraries
+reside in web/lib.
