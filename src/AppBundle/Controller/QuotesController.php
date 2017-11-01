@@ -8,10 +8,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+/**
+ * This controller serves the two pages that make up the
+ * application. The homepage action's sole function is redirecting the
+ * user to the quoteList page.
+ */
 class QuotesController extends Controller
 {
     /**
-     * @Route("/{_locale}/customers", name="customerList")
+     * @Route("/customers", name="customerList")
      */
     public function getCustomersAction(Request $request)
     {
@@ -19,7 +24,7 @@ class QuotesController extends Controller
     }
 
     /**
-     * @Route("/{_locale}/quotes", name="quoteList")
+     * @Route("/quotes", name="quoteList")
      */
     public function getQuotesAction(Request $request)
     {
