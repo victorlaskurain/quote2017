@@ -64,19 +64,21 @@
                                data-toggle="dropdown"
                                role="button"
                                aria-hashpopup="true"
-                               aria-expanded="false">{% trans %}app.choose_language{% endtrans %}</a>
+                               aria-expanded="false">{% trans %}app.user{% endtrans %}</a>
                             <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/logout">
+                                        {% trans %}app.logout{% endtrans %}
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                </li>
 {% for locale in locales %}
                                 <li>
                                     <a href="{{ path(app.request.attributes.get("_route"), app.request.query.all|merge({"_locale": locale})) }}">{{('app.locale_' ~ locale)|trans}}</a>
                                 </li>
 {% endfor %}
                             </ul>
-                        </li>
-                        <li>
-                            <a href="/logout">
-                                {% trans %}app.logout{% endtrans %}
-                            </a>
                         </li>
                     </ul>
                 </div>
