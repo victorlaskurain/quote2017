@@ -37,6 +37,9 @@ var quoteController = {
         if (filter.accepted !== undefined) {
             filter.accepted = Number(filter.accepted);
         }
+        if (!filter.description) {
+            delete filter.description;
+        }
         return api.getQuotes(filter).then(localizeDates);
     }
 }, loaded;

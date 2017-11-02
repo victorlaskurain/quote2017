@@ -172,7 +172,11 @@ ORDER BY `order`';
             if ('id' === $key) {
                 $filter['q.id'] = $val;
                 unset($filter[$key]);
+            } else if ('description' === $key) {
+                $filter['q.description'] = $val;
+                unset($filter[$key]);
             }
+
         }
         list($where, $order, $limit, $vars) =
             self::filterToMySqlQuery($conn, $filter);
