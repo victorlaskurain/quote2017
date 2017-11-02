@@ -134,6 +134,8 @@ function loadQuoteGrid(customers) {
             }
         ]
     });
+    $("#quote-list").jsGrid("sort", "date", "desc");
+
     // initialize combo box filters and add class to render jsGrid
     // filters with bootstrap styles.
     $(".jsgrid-filter-row select").combobox();
