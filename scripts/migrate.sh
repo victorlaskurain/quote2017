@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-OLDDB=presupuestos
+OLDDB=presupuestos_combined
 NEWDB=quotes2017
 mysql -uroot -proot $NEWDB <<EOF
 DELETE FROM $NEWDB.quote_generic_concept;
@@ -9,14 +9,14 @@ DELETE FROM $NEWDB.customer;
 
 INSERT INTO $NEWDB.customer(id, name)
 SELECT IF(BEZZENB = 0, -1, BEZZENB), BEZIZEN
-FROM $OLDDB.BEZEROA;
+FROM $OLDDB.bezeroa;
 
 INSERT INTO $NEWDB.customer(id, name)
 SELECT DISTINCT
        IF(P.BEZZENB = 0, -1, P.BEZZENB),
        CONCAT('Cliente ', P.BEZZENB)
-FROM      $OLDDB.PRESUPUESTOA AS P
-LEFT JOIN $OLDDB.BEZEROA      AS B
+FROM      $OLDDB.presupuestoa AS P
+LEFT JOIN $OLDDB.bezeroa      AS B
     USING (BEZZENB)
 WHERE B.BEZZENB IS NULL;
 UPDATE $NEWDB.customer SET id = 0 WHERE id = -1;
@@ -63,7 +63,7 @@ SELECT
     KOMISIOAK,
     TENPLEA,
     ARTEZKETA
-FROM $OLDDB.PRESUPUESTOA;
+FROM $OLDDB.presupuestoa;
 
 INSERT INTO $NEWDB.quote_generic_concept (
     quote_id,
@@ -71,7 +71,7 @@ INSERT INTO $NEWDB.quote_generic_concept (
      description,
      amount)
 SELECT PRESZENB, 10, BEST1, PREZ1
-FROM $OLDDB.PRESUPUESTOA
+FROM $OLDDB.presupuestoa
 WHERE BEST1 <> '' OR PREZ1 <> 0;
 INSERT INTO $NEWDB.quote_generic_concept (
     quote_id,
@@ -79,7 +79,7 @@ INSERT INTO $NEWDB.quote_generic_concept (
      description,
      amount)
 SELECT PRESZENB, 20, BEST2, PREZ2
-FROM $OLDDB.PRESUPUESTOA
+FROM $OLDDB.presupuestoa
 WHERE BEST2 <> '' OR PREZ2 <> 0;
 INSERT INTO $NEWDB.quote_generic_concept (
     quote_id,
@@ -87,6 +87,6 @@ INSERT INTO $NEWDB.quote_generic_concept (
      description,
      amount)
 SELECT PRESZENB, 30, BEST3, PREZ3
-FROM $OLDDB.PRESUPUESTOA
+FROM $OLDDB.presupuestoa
 WHERE BEST3 <> '' OR PREZ3 <> 0;
 EOF
