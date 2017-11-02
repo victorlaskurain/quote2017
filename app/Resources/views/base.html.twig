@@ -124,6 +124,13 @@ var require = {
     }
 };
         </script>
+        <!--
+        require.js defines the "define" and "require" functions used
+        to define and load modules. Once require is configured and
+        loaded there is no need to use explicit <script> tags to load
+        external Javascript libraries and, more importantly, the
+        framework guaranties proper load order.
+        -->
         <script src="{{ asset('lib/require.js') }}"></script>
         <script>
 /**
@@ -153,14 +160,13 @@ define("currentlocale", [], function() {
 return "{{ app.request.locale }}";
 });
 /**
- * Always load bootstrap and all its dependencies.
+ * Always load bootstrap and all its dependencies together with the
+ * page's main.
  */
 require([
-    "bootstrap"
+    "bootstrap", "{% block jsMain %}{% endblock %}"
 ],
 function(){});
         </script>
-        {% block javascripts %}
-        {% endblock %}
     </body>
 </html>
