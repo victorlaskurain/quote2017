@@ -58,6 +58,21 @@
                             </ul>
                         </li>
 {% endif %}
+                        <li class="dropdown">
+                            <a href="#"
+                               class="dropdown-toggle"
+                               data-toggle="dropdown"
+                               role="button"
+                               aria-hashpopup="true"
+                               aria-expanded="false">{% trans %}app.choose_language{% endtrans %}</a>
+                            <ul class="dropdown-menu">
+{% for locale in locales %}
+                                <li>
+                                    <a href="{{ path(app.request.attributes.get("_route"), app.request.query.all|merge({"_locale": locale})) }}">{{('app.locale_' ~ locale)|trans}}</a>
+                                </li>
+{% endfor %}
+                            </ul>
+                        </li>
                         <li>
                             <a href="/logout">
                                 {% trans %}app.logout{% endtrans %}
@@ -80,29 +95,32 @@
  */
 var require = {
     shim: {
-        "bootstrap": { "deps" :["jquery"] },
-        "bootstrap-combobox": { "deps" :["jquery", "bootstrap"] },
-        "bootstrap-datepicker": { "deps" :["jquery", "bootstrap"] },
-        "bootstrap-datepicker/locale/bootstrap-datepicker.es.min": { "deps": ["bootstrap-datepicker"] },
-        "bootstrap-datepicker/locale/bootstrap-datepicker.en.min": { "deps": ["bootstrap-datepicker"] },
-        "bootstrap-datepicker/locale/bootstrap-datepicker.eu.min": { "deps": ["bootstrap-datepicker"] },
-        "bootstrap-datepicker/locale": { "deps": ["bootstrap-datepicker"] },
-        "jquery-ui": { "deps" :["jquery"] },
-        "jsgrid":    { "deps" :["jquery"] },
-        "jsgrid-es": { "deps" :["jsgrid"] },
-        "lib/jsurl": {}
+        "bootstrap":                       { "deps" :["jquery"] },
+        "bootstrap-combobox":              { "deps" :["jquery", "bootstrap"] },
+        "bootstrap-datepicker":            { "deps" :["bootstrap-datepicker-es", "bootstrap-datepicker-eu"] },
+        "bootstrap-datepicker-es":         { "deps": ["bootstrap-datepicker-no-locales"] },
+        "bootstrap-datepicker-eu":         { "deps": ["bootstrap-datepicker-no-locales"] },
+        "bootstrap-datepicker-no-locales": { "deps" :["jquery", "bootstrap"] },
+        "jsgrid":                          { "deps": ["jsgrid-es", "jsgrid-eu"]},
+        "jsgrid-es":                       { "deps" :["jsgrid-no-locales"] },
+        "jsgrid-eu":                       { "deps" :["jsgrid-no-locales"] },
+        "jsgrid-no-locales":               { "deps" :["jquery"] },
+        "lib/jsurl":                       {}
     },
     baseUrl: "{{ asset('js') }}",
     paths: {
-        "bootstrap": "{{ asset('lib/bootstrap/js/bootstrap.min') }}",
-        "bootstrap-combobox": "{{ asset('lib/bootstrap-combobox/bootstrap-combobox') }}",
-        "bootstrap-datepicker": "{{ asset('lib/bootstrap-datepicker/js/bootstrap-datepicker.min') }}",
-        "bootstrap-datepicker/locale": "{{asset('lib/bootstrap-datepicker/locales')}}",
-        "jquery":    "{{ asset('lib/jquery') }}",
-        "jquery-ui": "{{ asset('lib/jquery-ui/jquery-ui.min') }}",
-        "jsgrid":    "{{ asset('lib/jsgrid/jsgrid') }}",
-        "jsgrid-es": "{{ asset('lib/jsgrid/i18n/jsgrid-es') }}",
-        "lib":       "{{ asset('lib') }}"
+        "bootstrap":                       "{{ asset('lib/bootstrap/js/bootstrap.min') }}",
+        "bootstrap-combobox":              "{{ asset('lib/bootstrap-combobox/bootstrap-combobox') }}",
+        "bootstrap-datepicker":            "{{ asset('js/bootstrap-datepicker') }}",
+        "bootstrap-datepicker-no-locales": "{{ asset('lib/bootstrap-datepicker/js/bootstrap-datepicker.min') }}",
+        "bootstrap-datepicker-es":         "{{ asset('lib/bootstrap-datepicker/locales/bootstrap-datepicker.es.min')}}",
+        "bootstrap-datepicker-eu":         "{{ asset('lib/bootstrap-datepicker/locales/bootstrap-datepicker.eu.min')}}",
+        "jquery":                          "{{ asset('lib/jquery') }}",
+        "jsgrid":                          "{{ asset('js/jsgrid') }}",
+        "jsgrid-es":                       "{{ asset('lib/jsgrid/i18n/jsgrid-es') }}",
+        "jsgrid-eu":                       "{{ asset('js/jsgrid/i18n/jsgrid-eu') }}",
+        "jsgrid-no-locales":               "{{ asset('lib/jsgrid/jsgrid') }}",
+        "lib":                             "{{ asset('lib') }}"
     }
 };
         </script>
@@ -131,20 +149,12 @@ return {
 /**
  * This is a simple way to export the requests locale to Javascript.
  */
-define("currentlocale",
-[
-/*
- * load datepicker translation files. Loading only the current locale's
- * translation would be enough but sadly bootstrap-datepicker.en.min does
- * not exist.
- */
-    "bootstrap-datepicker/locale/bootstrap-datepicker.es.min"
-],
-function() {
+define("currentlocale", [], function() {
 return "{{ app.request.locale }}";
 });
-        </script>
-        <script>
+/**
+ * Always load bootstrap and all its dependencies.
+ */
 require([
     "bootstrap"
 ],

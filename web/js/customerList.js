@@ -5,7 +5,6 @@ define([
     "locale",
     "template",
     "jsgrid",
-    "jsgrid-es",
     "bootstrap-combobox",
     "lib/jquery.serializejson",
     "lib/jsurl"

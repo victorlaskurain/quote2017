@@ -6,7 +6,6 @@ define([
     "template",
     "moment-localized",
     "jsgrid",
-    "jsgrid-es",
     "bootstrap-combobox",
     "bootstrap-datepicker",
     "lib/jquery.serializejson",
