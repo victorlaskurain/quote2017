@@ -143,6 +143,7 @@ function loadQuoteGrid(customers) {
     // filters with bootstrap styles.
     $(".jsgrid-filter-row select").combobox();
     $(".jsgrid-filter-row input").addClass("form-control");
+    $(".jsgrid-filter-row input[type=checkbox]").removeClass("form-control");
     // hack to show jsGrid combo box filter in position
     function setPosAbsolute() {
         var $combo = $(this),
