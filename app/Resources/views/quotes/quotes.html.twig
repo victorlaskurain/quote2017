@@ -49,6 +49,7 @@
                     </label>
                     <input class="form-control"
                            type="number"
+                           step="any"
                            name="number_of_day"
                            id="quote_number_of_day">
                 </td>
@@ -103,6 +104,7 @@
                         {% trans %}app.unit_weight{% endtrans %}
                     </label>
                     <input type="number"
+                           step="any"
                            class="form-control"
                            name="weight"
                            id="quote_weight">
@@ -112,6 +114,7 @@
                         {% trans %}app.kg_price{% endtrans %}
                     </label>
                     <input type="number"
+                           step="any"
                            class="form-control"
                            name="price"
                            id="quote_price">
@@ -121,6 +124,7 @@
                         {% trans %}app.unit_price{% endtrans %}
                     </label>
                     <input type="number"
+                           step="any"
                            class="form-control add-for-total"
                            id="quote_unit_price"
                            readonly="true">
@@ -132,6 +136,7 @@
                         {% trans %}app.saw{% endtrans %}
                     </label>
                     <input type="number"
+                           step="any"
                            class="form-control add-for-total"
                            name="saw"
                            id="quote_saw">
@@ -141,6 +146,7 @@
                         {% trans %}app.forge{% endtrans %}
                     </label>
                     <input type="number"
+                           step="any"
                            class="form-control add-for-total"
                            name="forge"
                            id="quote_forge">
@@ -150,6 +156,7 @@
                         {% trans %}app.annealing{% endtrans %}
                     </label>
                     <input type="number"
+                           step="any"
                            class="form-control add-for-total"
                            name="annealing"
                            id="quote_annealing">
@@ -161,6 +168,7 @@
                         {% trans %}app.lathe{% endtrans %}
                     </label>
                     <input type="number"
+                           step="any"
                            class="form-control add-for-total"
                            name="lathe"
                            id="quote_lathe">
@@ -170,6 +178,7 @@
                         {% trans %}app.threading{% endtrans %}
                     </label>
                     <input type="number"
+                           step="any"
                            class="form-control add-for-total"
                            name="threading"
                            id="quote_threading">
@@ -178,6 +187,7 @@
                     <label for="quote_milling" class="control-label">{% trans %}app.milling{% endtrans %}
                     </label>
                     <input type="number"
+                           step="any"
                            class="form-control add-for-total"
                            name="milling"
                            id="quote_milling">
@@ -189,6 +199,7 @@
                         {% trans %}app.drill{% endtrans %}
                     </label>
                     <input type="number"
+                           step="any"
                            class="form-control add-for-total"
                            name="drill"
                            id="quote_drill">
@@ -198,6 +209,7 @@
                         {% trans %}app.grinding{% endtrans %}
                     </label>
                     <input type="number"
+                           step="any"
                            class="form-control add-for-total"
                            name="grinding"
                            id="quote_grinding">
@@ -207,6 +219,7 @@
                         {% trans %}app.cementation{% endtrans %}
                     </label>
                     <input type="number"
+                           step="any"
                            class="form-control add-for-total"
                            name="cementation"
                            id="quote_cementation">
@@ -218,6 +231,7 @@
                         {% trans %}app.hardening{% endtrans %}
                     </label>
                     <input type="number"
+                           step="any"
                            class="form-control add-for-total"
                            name="hardening"
                            id="quote_hardening">
@@ -227,6 +241,7 @@
                         {% trans %}app.shipping{% endtrans %}
                     </label>
                     <input type="number"
+                           step="any"
                            class="form-control add-for-total"
                            name="shipping"
                            id="quote_shipping">
@@ -236,6 +251,7 @@
                         {% trans %}app.zinc_plating{% endtrans %}
                     </label>
                     <input type="number"
+                           step="any"
                            class="form-control add-for-total"
                            name="zinc_plating"
                            id="quote_zinc_plating">
@@ -260,6 +276,7 @@ engine is defined in the web/js/template.js file.
                     </td>
                     <td class="form-inline">
                         <input type="number"
+                               step="any"
                                name="generic_concepts[][amount]"
                                value="{amount}"
                                class="form-control add-for-total">&nbsp;
@@ -290,6 +307,7 @@ engine is defined in the web/js/template.js file.
                         {% trans %}app.total{% endtrans %}
                     </label>
                     <input type="number"
+                           step="any"
                            class="form-control"
                            id="quote_total"
                            readonly="true">
@@ -299,8 +317,9 @@ engine is defined in the web/js/template.js file.
                 <td colspan="3">
                     <br/>
                     <p class="pull-right">
-                        <button id="quote-edit-cancel" class="btn btn-default">{% trans %}app.quote_cancel{% endtrans%}</button>
-                        <button id="quote-edit-save" class="btn btn-primary">{% trans %}app.quote_save{% endtrans%}</button>
+                        <button id="quote-edit-cancel"      class="btn btn-default">{% trans %}app.quote_cancel{% endtrans%}</button>
+                        <button id="quote-edit-save-as-new" class="btn btn-default">{% trans %}app.quote_save_as_new{% endtrans%}</button>
+                        <button id="quote-edit-save"        class="btn btn-primary">{% trans %}app.quote_save{% endtrans%}</button>
                     </p>
                 </td>
             </tr>

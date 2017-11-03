@@ -62,6 +62,11 @@ function init() {
         saveQuote();
         return false;
     });
+    $("#quote-edit-save-as-new").click(function() {
+        $("#quote_id").val(null);
+        saveQuote();
+        return false;
+    });
     // $(".show-quote-list").click(showQuoteList);// :TODO:
     $("#quote_price,#quote_weight").change(updateUnitPrice);
     quoteForm.on("change", ".add-for-total", updateTotal);
