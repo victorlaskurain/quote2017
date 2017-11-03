@@ -67,7 +67,7 @@
                                aria-expanded="false">{% trans %}app.user{% endtrans %}</a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="/logout">
+                                    <a href="{{ path('fos_user_security_logout') }}">
                                         {% trans %}app.logout{% endtrans %}
                                     </a>
                                 </li>
