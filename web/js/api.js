@@ -12,36 +12,37 @@
  * require the module.
  */
 define([
-    "jquery"
+    "jquery",
+    "baseurl"
 ],
-function($) {
+function($, baseurl) {
 
 function getCustomers(jsGridFilter) {
-    return $.getJSON("/api/customers", jsGridFilter || {});
+    return $.getJSON(baseurl + "/api/customers", jsGridFilter || {});
 }
 
 function getCustomerById(id) {
-    return $.getJSON("/api/customers/" + id);
+    return $.getJSON(baseurl + "/api/customers/" + id);
 }
 
 function getQuoteById(id) {
-    return $.getJSON("/api/quotes/" + id);
+    return $.getJSON(baseurl + "/api/quotes/" + id);
 }
 
 function getQuotes(jsGridFilter) {
-    return $.getJSON("/api/quotes", jsGridFilter || {});
+    return $.getJSON(baseurl + "/api/quotes", jsGridFilter || {});
 }
 
 function saveCustomer(id, customer) {
     return $.post({
-        url: "/api/customers/" + id,
+        url: baseurl + "/api/customers/" + id,
         data: JSON.stringify(customer)
     });
 }
 
 function saveQuote(id, quote) {
     return $.post({
-        url: "/api/quotes/" + id,
+        url: baseurl + "/api/quotes/" + id,
         data: JSON.stringify(quote)
     });
 }

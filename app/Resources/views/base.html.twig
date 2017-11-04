@@ -162,6 +162,14 @@ define("currentlocale", [], function() {
 return "{{ app.request.locale }}";
 });
 /**
+ * This is a simple way to export base URL to generate URL in JS.
+ *
+ * In more complex cases FOSJsRoutingBundle could be a better solution.
+ */
+define("baseurl", [], function() {
+return "{{ app.request.baseUrl }}";
+});
+/**
  * Always load bootstrap and all its dependencies together with the
  * page's main.
  */
