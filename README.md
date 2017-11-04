@@ -59,11 +59,22 @@ Db.php file.
 ## Javascript ##
 
 All the Javascript code written for the application is in AMD modules.
-You  will  find  all  these  modules in  the  web/js  directory.   The
+You will  find all most  these modules  in the web/js  directory.  The
 applications uses  the require.js'  shim configuration option  to load
 the external Javascript  libraries also as AMD  modules, although this
-is not possible  in every instance. The  external Javascript libraries
-reside in web/lib.
+is not possible  in every instance.
+
+The  ~base.html.twig~  defines a  few  modules  used to  publish  some
+information available  in the  server side of  the application  to the
+client (Javascript) side:
+
+- The current locale.
+
+- Some translations needed by the Javascript code.
+
+- The base URL.
+
+The external Javascript libraries reside in web/lib.
 
 # Publishing with Apache #
 
