@@ -1,4 +1,4 @@
-# quotes2017 #
+# Introduction #
 
 A   simple  but   hopefully   not  trivial   example   of  a   Symfony
 application.  It  is  expected  to  serve as  an  example  of  several
@@ -14,7 +14,7 @@ important and common techniques.
 -  Authentication   and  access   control  using  Symfony   roles  and
   FOSUserBundle.
 
-## General architecture ##
+# General architecture #
 
 The application has two functionalities:
 
@@ -64,3 +64,21 @@ applications uses  the require.js'  shim configuration option  to load
 the external Javascript  libraries also as AMD  modules, although this
 is not possible  in every instance. The  external Javascript libraries
 reside in web/lib.
+
+# Publishing with Apache #
+
+For Apache 2.4 just add this block inside the ~VirtualHost~ block you
+like.
+
+```
+Alias /quotes2017 <path to the project directory>/web
+<Directory /home/victor/MAITE/quotes2017/web>
+    Require all granted
+    <IfModule mod_rewrite.c>
+        Options -MultiViews
+        RewriteEngine On
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteRule ^(.*)$ app.php [QSA,L]
+    </IfModule>
+</Directory>
+```
