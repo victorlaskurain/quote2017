@@ -33,9 +33,9 @@ CREATE TABLE presupuestoa (
   FORJA decimal(10,3) NOT NULL DEFAULT 0.000,
   ZERRA decimal(10,3) NOT NULL DEFAULT 0.000,
   EGUNEKOZENB int(11) NOT NULL DEFAULT 0,
-  BEST1 varchar(255) CHARACTER SET latin1 NOT NULL DEFAULT '""',
-  BEST2 varchar(255) CHARACTER SET latin1 NOT NULL DEFAULT '""',
-  BEST3 varchar(255) CHARACTER SET latin1 NOT NULL DEFAULT '""',
+  BEST1 varchar(255) CHARACTER SET latin1 NOT NULL DEFAULT '',
+  BEST2 varchar(255) CHARACTER SET latin1 NOT NULL DEFAULT '',
+  BEST3 varchar(255) CHARACTER SET latin1 NOT NULL DEFAULT '',
   PREZ1 decimal(10,3) NOT NULL DEFAULT 0.000,
   PREZ2 decimal(10,3) NOT NULL DEFAULT 0.000,
   PREZ3 decimal(10,3) NOT NULL DEFAULT 0.000,
@@ -83,7 +83,13 @@ INSERT INTO $DBCOMBINED.presupuestoa (
     HARIA,
     KOMISIOAK,
     TENPLEA,
-    ARTEZKETA
+    ARTEZKETA,
+    BEST1,
+    PREZ1,
+    BEST2,
+    PREZ2,
+    BEST3,
+    PREZ3
 )
 SELECT BEZZENB,
        DATA,
@@ -103,7 +109,13 @@ SELECT BEZZENB,
        HARIA,
        KOMISIOAK,
        TENPLEA,
-       ARTEZKETA
+       ARTEZKETA,
+       BEST1,
+       PREZ1,
+       BEST2,
+       PREZ2,
+       BEST3,
+       PREZ3
 FROM $DB1.presupuestoa
 UNION DISTINCT
 SELECT BEZZENB,
@@ -124,6 +136,12 @@ SELECT BEZZENB,
        HARIA,
        KOMISIOAK,
        TENPLEA,
-       ARTEZKETA
+       ARTEZKETA,
+       BEST1,
+       PREZ1,
+       BEST2,
+       PREZ2,
+       BEST3,
+       PREZ3
 FROM $DB2.presupuestoa;
 EOF
