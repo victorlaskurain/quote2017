@@ -95,6 +95,14 @@ function init() {
     });
 }
 
+function round(n, places) {
+    if (places === undefined) {
+        places = 2;
+    }
+    var mul = Math.pow(10, places);
+    return Math.round(n * mul) / mul;
+}
+
 function saveQuote() {
     var quote = $("#quote-edit-form").serializeJSON({parseAll: true});
     if (quote.id == "") {
@@ -157,13 +165,14 @@ function updateTotal() {
         .toArray()
         .reduce(function(a, b){
             return a + b;});
-    $("#quote_total").val(total);
+    $("#quote_total").val(round(total));
 }
 
 function updateUnitPrice() {
     $("#quote_unit_price").val(
-        Number($("#quote_price").val()) *
-        Number($("#quote_weight").val())
+        round(
+            Number($("#quote_price").val()) *
+            Number($("#quote_weight").val()))
     ).change();
 }
 
