@@ -74,9 +74,10 @@
                            data-date-language="{{ app.request.locale }}"
                            data-date-autoclose="true">
                 </td>
-            </tr>
-            <tr>
                 <td>
+                    <label for="quote_accepted" class="control-label">
+                        &nbsp;
+                    </label>
                     <select class="form-control bootstrap-combobox"
                             name="accepted"
                             id="quote_accepted">
@@ -84,11 +85,9 @@
                         <option value="1">{% trans %}Aceptado{% endtrans %}</option>
                     </select>
                 </td>
-                <td></td>
-                <td></td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <label for="quote_description" class="control-label">
                         {% trans %}app.quote_description{% endtrans%}
                     </label>
@@ -129,6 +128,8 @@
                            id="quote_unit_price"
                            readonly="true">
                 </td>
+                <td>
+                </td>
             </tr>
             <tr>
                 <td>
@@ -161,8 +162,6 @@
                            name="annealing"
                            id="quote_annealing">
                 </td>
-            </tr>
-            <tr>
                 <td>
                     <label for="quote_lathe" class="control-label">
                         {% trans %}app.lathe{% endtrans %}
@@ -173,6 +172,8 @@
                            name="lathe"
                            id="quote_lathe">
                 </td>
+            </tr>
+            <tr>
                 <td>
                     <label for="quote_threading" class="control-label">
                         {% trans %}app.threading{% endtrans %}
@@ -192,8 +193,6 @@
                            name="milling"
                            id="quote_milling">
                 </td>
-            </tr>
-            <tr>
                 <td>
                     <label for="quote_drill" class="control-label">
                         {% trans %}app.drill{% endtrans %}
@@ -214,6 +213,8 @@
                            name="grinding"
                            id="quote_grinding">
                 </td>
+            </tr>
+            <tr>
                 <td>
                     <label for="quote_cementation" class="control-label">
                         {% trans %}app.cementation{% endtrans %}
@@ -224,8 +225,6 @@
                            name="cementation"
                            id="quote_cementation">
                 </td>
-            </tr>
-            <tr>
                 <td>
                     <label class="quote_hardening" class="control-label">
                         {% trans %}app.hardening{% endtrans %}
@@ -268,7 +267,7 @@ engine is defined in the web/js/template.js file.
  -->
             <script id="generic-concept-tpl" type="text/html">
                 <tr class="generic-concept" id="generic-concept-{id}">
-                    <td colspan="2">
+                    <td colspan="3">
                         <input type="text"
                                name="generic_concepts[][description]"
                                value="{description}"
@@ -279,28 +278,25 @@ engine is defined in the web/js/template.js file.
                                step="any"
                                name="generic_concepts[][amount]"
                                value="{amount}"
-                               class="form-control add-for-total">&nbsp;
-                        <button data-tr-id="generic-concept-{id}" class="btn btn-default pull-right glyphicon glyphicon-remove remove-generic"></button>
+                               class="form-control add-for-total"><button data-tr-id="generic-concept-{id}" class="btn btn-default pull-right glyphicon glyphicon-remove remove-generic"></button>
                     </td>
                 </tr>
             </script>
             <tr id="quote-generic-concept-header">
-                <th colspan="2">
+                <td colspan="3">
                     <label class="control-label">{% trans %}app.other_concepts{% endtrans %}</label>
-                </th>
-                <th>
+                </td>
+                <td>
                     <label class="control-label">{% trans %}app.amount{% endtrans %}</label>
-                </th>
+                </td>
             </tr>
             <tr id="quote-generic-concept-footer">
-                <td colspan="3">
+                <td colspan="4">
                     <button id="add-generic" class="btn btn-default pull-right glyphicon glyphicon-plus"></button>
                 </td>
             </tr>
             <tr>
-                <td>
-                </td>
-                <td>
+                <td colspan="3">
                 </td>
                 <td>
                     <label for="quote_total" class="control-label">
@@ -314,7 +310,7 @@ engine is defined in the web/js/template.js file.
                 </td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <br/>
                     <p class="pull-right">
                         <button id="quote-edit-cancel"      class="btn btn-default">{% trans %}app.quote_cancel{% endtrans%}</button>

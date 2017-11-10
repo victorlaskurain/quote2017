@@ -49,3 +49,21 @@ form > table td {
 #fos-user-content input[type=checkbox] {
     width: auto;
 }
+
+/**
+ * Squeeze quote edition lines to fit in 600px.
+ */
+.navbar-nav > li > a, .navbar-brand {
+    padding-top:6px !important;
+    padding-bottom:0px !important;
+    height: 32px;
+}
+.navbar {
+    min-height:32px !important;
+}
+body {
+    padding-top: 20px;
+}
+label {
+    margin-bottom: 0px;
+}
