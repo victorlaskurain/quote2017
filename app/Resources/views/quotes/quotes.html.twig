@@ -31,6 +31,12 @@
                data-provide="datepicker"
                data-date-language="{{ app.request.locale }}"
                data-date-autoclose="true">
+        <button id="quote-list-reset-filters" class="btn btn-default">
+            {% trans %}app.reset_filters{% endtrans %}
+        </button>
+        <button id="quote-list-search" class="btn btn-default">
+            {% trans %}app.search{% endtrans %}
+        </button>
     </form>
     <div id="quote-list"></div>
     <p class="pull-right">

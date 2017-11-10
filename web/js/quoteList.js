@@ -66,6 +66,29 @@ function init() {
     $("#quote-date-range input").on("blur", function() {
         $("#quote-list").jsGrid("loadData");
     });
+    $("#quote-list-search").on("click", function() {
+        $("#quote-list").jsGrid("loadData");
+        return false;
+    });
+    $("#quote-list-reset-filters").on("click", function() {
+        /**
+         * Using $("#quote-list").jsGrid("clearFilter") would be the
+         * natural thing to do but it has two problems:
+         * a) calls "search", which invalidates sort order.
+         * b) reinstantiates the filters, which destroys the bootstrap combobox.
+         */
+        $(".jsgrid-filter-row input").map(function(i, elem) {
+            $(elem).val(null);
+        });
+        $(".jsgrid-filter-row input[type=checkbox]").map(function(i, elem) {
+            $(elem).prop("indeterminate", true);
+        });
+        $(".jsgrid-filter-row select").map(function(i, elem) {
+            $(elem).val(null).combobox("refresh");
+        });
+        $("#quote-list").jsGrid("loadData");
+        return false;
+    });
     loaded = api.getCustomers().then(function(customers) {
         loadQuoteGrid([{id: "", name: ""}].concat(customers.data));
     });
