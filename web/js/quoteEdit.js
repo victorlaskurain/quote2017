@@ -3,12 +3,13 @@ define([
     "api",
     "locale",
     "template",
+    "appStrings",
     "bootstrap-combobox",
     "bootstrap-datepicker",
     "lib/jquery.serializejson",
     "lib/jsurl"
 ],
-function($, api, locale, template){
+function($, api, locale, template, appStrings){
 
 var quoteForm = $("#quote-edit-form");
 
@@ -50,7 +51,7 @@ function init() {
     });
     quoteForm.on("click", ".remove-generic", function() {
         var trId = $(this).attr("data-tr-id");
-        $("#" + trId).remove();;
+        $("#" + trId).remove();
         updateTotal();
         return false;
     });
@@ -65,6 +66,19 @@ function init() {
     $("#quote-edit-save-as-new").click(function() {
         $("#quote_id").val(null);
         saveQuote();
+        return false;
+    });
+    $("#quote-edit-delete").click(function() {
+        if (confirm(appStrings["confirm_delete_quote"])) {
+            api.deleteQuotes([$('#quote_id').val()]).then(
+                function() {
+                    quoteForm.trigger("quoteEdit:done", [{saved: true}]);
+                },
+                function() {
+                    alert(appStrings["error_delete_quote"]);
+                }
+            );
+        }
         return false;
     });
     // $(".show-quote-list").click(showQuoteList);// :TODO:
@@ -112,6 +126,7 @@ function showQuote(quote) {
             "before");
         updateUnitPrice();
         updateTotal();
+        $("#quote-edit-delete").prop("disabled", false);
         $(".app-page").addClass("hide");
         $("#quote-edit-page").removeClass("hide");
     });
@@ -130,6 +145,7 @@ function newQuote() {
     addGenericConcept();
     updateUnitPrice();
     updateTotal();
+    $("#quote-edit-delete").prop("disabled", true);
     $(".app-page").addClass("hide");
     $("#quote-edit-page").removeClass("hide");
     return $.when();

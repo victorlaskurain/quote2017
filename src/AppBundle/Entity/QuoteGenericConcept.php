@@ -46,7 +46,7 @@ class QuoteGenericConcept
 
   /**
    * @ManyToOne(targetEntity="Quote")
-   * @JoinColumn(nullable=false)
+   * @JoinColumn(nullable=false, onDelete="CASCADE")
    */
   private $quote;
 }

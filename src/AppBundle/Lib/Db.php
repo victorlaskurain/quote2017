@@ -55,6 +55,13 @@ INSERT INTO $table ($columns)
         $this->conn->executeUpdate($sql, array($id));
     }
 
+    public function deleteQuotes($ids)
+    {
+        $placeholders = implode(', ', array_fill(0, count($ids), '?'));
+        $sql = "DELETE FROM quote WHERE id IN ($placeholders)";
+        $this->conn->executeUpdate($sql, $ids);
+    }
+
     private static function filterToMySqlQuery($conn, $filter)
     {
         $orderBy = '';

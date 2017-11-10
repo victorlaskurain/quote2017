@@ -4,10 +4,12 @@ namespace AppBundle\Controller;
 
 use AppBundle\Form\CustomerType;
 use AppBundle\Form\QuoteType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+
 
 /**
  * This controller implements a web service. This web service provides
@@ -15,6 +17,24 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class ApiController extends Controller
 {
+
+    /**
+     * Deletes the specified quotes.
+     *
+     * Requires the ids of the quotes to delete encoded as JSON list
+     * in the request data.
+     *
+     * @Route("/api/delete_quotes", name="apiDeleteQuotes")
+     * @Method("POST")
+     */
+    public function deleteQuotesAction(Request $request)
+    {
+        $db  = $this->get('app.db');
+        $ids = json_decode($request->getContent(), true);
+        $db->deleteQuotes($ids);
+        return new JsonResponse();
+    }
+
     /**
      * Returns the list of the customers filtered according to the
      * request parameters. The request parameters are in the format

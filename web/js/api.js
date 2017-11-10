@@ -17,6 +17,13 @@ define([
 ],
 function($, baseurl) {
 
+function deleteQuotes(idList) {
+    return $.post({
+        url: baseurl + "/api/delete_quotes",
+        data: JSON.stringify(idList)
+    });
+}
+
 function getCustomers(jsGridFilter) {
     return $.getJSON(baseurl + "/api/customers", jsGridFilter || {});
 }
@@ -48,6 +55,7 @@ function saveQuote(id, quote) {
 }
 
 return {
+    deleteQuotes: deleteQuotes,
     getCustomerById: getCustomerById,
     getCustomers: getCustomers,
     getQuoteById: getQuoteById,
