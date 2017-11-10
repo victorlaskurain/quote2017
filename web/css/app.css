@@ -67,3 +67,22 @@ body {
 label {
     margin-bottom: 0px;
 }
+
+
+/**
+ * Print styles
+ */
+@media print {
+    button {
+        display: none !important;
+    }
+    span.input-group-addon.dropdown-toggle {
+        display: none !important;
+    }
+    .no-print {
+        display: none !important;
+    }
+    #quote-edit-form table {
+        margin: 0 auto;
+    }
+}
