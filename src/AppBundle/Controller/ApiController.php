@@ -57,29 +57,41 @@ class ApiController extends Controller
      * customers. With POST uses the CustomerType form to validate the
      * data and if the validations passes updates the DB.
      *
-     * @Route("/api/customers/{id}",
-     *        name="apiGetCustomerById")
+     * @Route("/api/customers/{id}", name="apiUpdateCustomerById")
+     * @Method("POST")
      */
-    public function getCustomerByIdAction(Request $request, $id)
+    public function updateCustomerByIdAction(Request $request, $id)
     {
         $db    = $this->get('app.db');
         $logic = $this->get('app.logic');
-        if ($request->isMethod('POST')) {
-            $customer = json_decode($request->getContent(), true);
-            $form = $this->createForm(CustomerType::class, array());
-            $form->submit($customer);
-            if (!$form->isValid()) {
-                $errors = array();
-                foreach ($form->getErrors() as $error) {
-                    $errors[] = $error->getMessage();
-                }
-                return new JsonResponse(implode("\n", $errors), 500);
+        $customer = json_decode($request->getContent(), true);
+        $form = $this->createForm(CustomerType::class, array());
+        $form->submit($customer);
+        if (!$form->isValid()) {
+            $errors = array();
+            foreach ($form->getErrors() as $error) {
+                $errors[] = $error->getMessage();
             }
-            if ($id === 'new') {
-                unset($customer['id']);
-            }
-            $id = $logic->addUpdateCustomer($customer);
+            return new JsonResponse(implode("\n", $errors), 500);
         }
+        if ($id === 'new') {
+            unset($customer['id']);
+        }
+        $id = $logic->addUpdateCustomer($customer);
+        return new JsonResponse($db->getCustomerById($id));
+    }
+
+    /**
+     * With GET returns a JSON object with the data of the
+     * customers. With POST uses the CustomerType form to validate the
+     * data and if the validations passes updates the DB.
+     *
+     * @Route("/api/customers/{id}", name="apiGetCustomerById")
+     * @Method("GET")
+     */
+    public function getCustomerByIdAction(Request $request, $id)
+    {
+        $db = $this->get('app.db');
         return new JsonResponse($db->getCustomerById($id));
     }
 
