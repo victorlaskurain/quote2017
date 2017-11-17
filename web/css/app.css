@@ -73,6 +73,9 @@ label {
  * Print styles
  */
 @media print {
+    input, textarea {
+        font-size: 18px !important;
+    }
     button {
         display: none !important;
     }
