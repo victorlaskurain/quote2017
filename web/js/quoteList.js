@@ -152,7 +152,7 @@ function loadQuoteGrid(customers) {
                 title: strings.total,
                 name: "total",
                 itemTemplate: function(value) {
-                    return locale.formatNumber(value, 3);
+                    return locale.formatNumber(value, 2);
                 },
                 type: "number",
                 filtering: false,

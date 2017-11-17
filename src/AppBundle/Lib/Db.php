@@ -189,11 +189,11 @@ ORDER BY `order`';
             self::filterToMySqlQuery($conn, $filter);
         $sql      = "
 SELECT q.*,
-       COALESCE(SUM(g.amount), 0) +
+       ROUND(COALESCE(SUM(g.amount), 0) +
        shipping + drill + lathe + forge + saw +
        annealing + cementation + weight * price +
        milling + threading + commissions +
-       grinding + hardening + zinc_plating AS total
+       grinding + hardening + zinc_plating, 2) AS total
 FROM      quote                 q
 LEFT JOIN quote_generic_concept g
        ON q.id = g.quote_id

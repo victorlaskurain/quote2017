@@ -40,7 +40,7 @@ class Quote
   protected $description;
 
   /**
-   * @Column(type="decimal", precision=10, scale=3,
+   * @Column(type="decimal", precision=10, scale=2,
    *         nullable=false, options={"default"=0})
    */
   protected $shipping;
@@ -57,85 +57,85 @@ class Quote
   private $accepted;
 
   /**
-   * @Column(type="decimal", precision=10, scale=3,
+   * @Column(type="decimal", precision=10, scale=2,
    *         nullable=false, options={"default"=0})
    */
   protected $drill;
 
   /**
-   * @Column(type="decimal", precision=10, scale=3,
+   * @Column(type="decimal", precision=10, scale=2,
    *         nullable=false, options={"default"=0})
    */
   protected $lathe;
 
   /**
-   * @Column(type="decimal", precision=10, scale=3,
+   * @Column(type="decimal", precision=10, scale=2,
    *         nullable=false, options={"default"=0})
    */
   protected $forge;
 
   /**
-   * @Column(type="decimal", precision=10, scale=3,
+   * @Column(type="decimal", precision=10, scale=2,
    *         nullable=false, options={"default"=0})
    */
   protected $saw;
 
   /**
-   * @Column(type="decimal", precision=10, scale=3,
+   * @Column(type="decimal", precision=10, scale=2,
    *         nullable=false, options={"default"=0})
    */
   protected $annealing;
 
   /**
-   * @Column(type="decimal", precision=10, scale=3,
+   * @Column(type="decimal", precision=10, scale=2,
    *         nullable=false, options={"default"=0})
    */
   protected $cementation;
 
   /**
-   * @Column(type="decimal", precision=10, scale=3,
+   * @Column(type="decimal", precision=10, scale=2,
    *         nullable=false, options={"default"=0})
    */
   protected $weight;
 
   /**
-   * @Column(type="decimal", precision=10, scale=3,
+   * @Column(type="decimal", precision=10, scale=2,
    *         nullable=false, options={"default"=0})
    */
   protected $price;
 
   /**
-   * @Column(type="decimal", precision=10, scale=3,
+   * @Column(type="decimal", precision=10, scale=2,
    *         nullable=false, options={"default"=0})
    */
   protected $milling;
 
   /**
-   * @Column(type="decimal", precision=10, scale=3,
+   * @Column(type="decimal", precision=10, scale=2,
    *         nullable=false, options={"default"=0})
    */
   protected $threading;
 
   /**
-   * @Column(type="decimal", precision=10, scale=3,
+   * @Column(type="decimal", precision=10, scale=2,
    *         nullable=false, options={"default"=0})
    */
   protected $commissions;
 
   /**
-   * @Column(type="decimal", precision=10, scale=3,
+   * @Column(type="decimal", precision=10, scale=2,
    *         nullable=false, options={"default"=0})
    */
   protected $grinding;
 
   /**
-   * @Column(type="decimal", precision=10, scale=3,
+   * @Column(type="decimal", precision=10, scale=2,
    *         nullable=false, options={"default"=0})
    */
   protected $hardening;
 
   /**
-   * @Column(type="decimal", precision=10, scale=3,
+   * @Column(type="decimal", precision=10, scale=2,
    *         nullable=false, options={"default"=0})
    */
   protected $zincPlating;

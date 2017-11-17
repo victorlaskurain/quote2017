@@ -181,6 +181,15 @@
             </tr>
             <tr>
                 <td>
+                    <label for="quote_milling" class="control-label">{% trans %}app.milling{% endtrans %}
+                    </label>
+                    <input type="number"
+                           step="any"
+                           class="form-control add-for-total"
+                           name="milling"
+                           id="quote_milling">
+                </td>
+                <td>
                     <label for="quote_threading" class="control-label">
                         {% trans %}app.threading{% endtrans %}
                     </label>
@@ -189,15 +198,6 @@
                            class="form-control add-for-total"
                            name="threading"
                            id="quote_threading">
-                </td>
-                <td>
-                    <label for="quote_milling" class="control-label">{% trans %}app.milling{% endtrans %}
-                    </label>
-                    <input type="number"
-                           step="any"
-                           class="form-control add-for-total"
-                           name="milling"
-                           id="quote_milling">
                 </td>
                 <td>
                     <label for="quote_drill" class="control-label">
