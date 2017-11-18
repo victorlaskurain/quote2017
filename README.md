@@ -64,7 +64,7 @@ applications uses  the require.js'  shim configuration option  to load
 the external Javascript  libraries also as AMD  modules, although this
 is not possible  in every instance.
 
-The  ~base.html.twig~  defines a  few  modules  used to  publish  some
+The  ``base.html.twig`` defines  a few  modules used  to publish  some
 information available  in the  server side of  the application  to the
 client (Javascript) side:
 
@@ -78,8 +78,8 @@ The external Javascript libraries reside in web/lib.
 
 # Publishing with Apache #
 
-For Apache 2.4 just add this block inside the ~VirtualHost~ block you
-like.
+For Apache  2.4 just add  this block inside the  ``VirtualHost`` block
+you like.
 
 ```
 Alias /quotes2017 <path to the project directory>/web
