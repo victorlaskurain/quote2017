@@ -83,7 +83,7 @@ you like.
 
 ```
 Alias /quotes2017 <path to the project directory>/web
-<Directory /home/victor/MAITE/quotes2017/web>
+<Directory /var/www/quotes2017/web>
     Require all granted
     <IfModule mod_rewrite.c>
         Options -MultiViews
