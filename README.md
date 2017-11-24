@@ -88,6 +88,8 @@ Alias /quotes2017 <path to the project directory>/web
     <IfModule mod_rewrite.c>
         Options -MultiViews
         RewriteEngine On
+        # not required in all Apache versions, by doesn't hurt either
+        RewriteBase /quotes2017
         RewriteCond %{REQUEST_FILENAME} !-f
         RewriteRule ^(.*)$ app.php [QSA,L]
     </IfModule>
