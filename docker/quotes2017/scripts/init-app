@@ -1,0 +1,38 @@
+#!/bin/bash
+
+set -euo pipefail
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+cd "$script_dir/.."
+
+echo "Create database"
+docker-compose run --rm -T web bash <<EOF
+while ! echo 'CREATE DATABASE quotes2017;' | mysql -uroot -proot -hdb
+do
+    echo "Retry in one second..."
+    sleep 1
+done
+EOF
+
+echo "Deploy app with php composer"
+docker-compose run --rm -u$UID -T web bash <<'EOF'
+cd /opt/quotes/app/config/
+cp parameters.yml.dist parameters.yml
+sed -i.bk 's/database_host:.*/database_host: db/' parameters.yml
+sed -i.bk 's/database_password:.*/database_password: root/' parameters.yml
+sed -i.bk 's/database_name:.*/database_name: quotes2017/' parameters.yml
+cd /opt/quotes
+composer install
+/opt/quotes/app/console d:m:m -n
+EOF
+
+echo "Fix cache and logs permissions"
+docker-compose run --rm web chown -R www-data.www-data /opt/quotes/app/cache /opt/quotes/app/logs
+
+echo "Create app user"
+docker-compose run --rm -uwww-data web bash <<EOF
+/opt/quotes/app/console fos:user:create user user user
+/opt/quotes/app/console fos:user:promote user ROLE_ADMIN
+EOF
+
+echo "Start app"
+docker-compose up -d
